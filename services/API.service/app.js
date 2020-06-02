@@ -1,0 +1,21 @@
+const express = require('express');
+const app = express();
+const server = require('http').Server(app);
+const formidableMiddleware = require('express-formidable');
+const Logger = require('./logs/logger');
+const fun = require('./src/functions/app.fun');
+
+// ---------------------- parse args ----------------------- //
+let args = fun.parseArgs(process);
+
+// --------------------- parsing body ----------------------- //
+app.use(formidableMiddleware());
+
+// ------------------------ logger -------------------------- //
+const logger = new Logger(args.name);
+
+// ------------------ starting the server ------------------- //
+fun.start(server, args.name, args.port, logger);
+
+// -------------------- testing export ----------------------- //
+module.exports = server;

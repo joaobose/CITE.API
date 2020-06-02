@@ -1,0 +1,24 @@
+{
+  "name": "cite.api",
+  "version": "1.0.0",
+  "description": "A RESTful API for CITE",
+  "main": "app.js",
+  "scripts": {
+    "start": "bash start.sh",
+    "custom-install": "bash npm-install.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaobose/CITE.API.git"
+  },
+  "author": "Joao Pinto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaobose/CITE.API/issues"
+  },
+  "homepage": "https://github.com/joaobose/CITE.API#readme",
+  "dependencies": {
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.11"
+  }
+}
