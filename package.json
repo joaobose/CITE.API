@@ -4,8 +4,8 @@
   "description": "A RESTful API for CITE",
   "main": "app.js",
   "scripts": {
-    "start": "bash start.sh",
-    "custom-install": "bash npm-install.sh",
+    "start": "node start.js",
+    "custom-install": "node npm-install.js",
     "dev-db:reset": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
     "test-db:reset": "NODE_ENV=test sequelize db:migrate:undo:all && NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all"
   },
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/joaobose/CITE.API#readme",
   "dependencies": {
     "mysql2": "^2.1.0",
+    "ramda": "^0.27.0",
     "sequelize": "^5.21.11"
   }
 }
