@@ -35,6 +35,14 @@ module.exports = {
         }
       },
 
+      password: {
+        allowNull: false,
+        type: Sequelize.STRING(255),
+        validate: {
+          notEmpty: true
+        }
+      },
+
       description: {
         type: Sequelize.STRING(255),
         defaultValue: 'Praise saint bad bunny'

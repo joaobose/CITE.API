@@ -35,10 +35,7 @@ module.exports = {
 
       trelloBoard: Sequelize.STRING(255),
 
-      driveFolder: {
-        allowNull: false,
-        type: Sequelize.STRING(255)
-      },
+      driveFolder: Sequelize.STRING(255),
 
       status: Sequelize.ENUM('queued', 'inProgress', 'cancelled', 'finished'),
 
