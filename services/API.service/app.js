@@ -3,7 +3,7 @@ const app = express();
 const server = require('http').Server(app);
 const formidableMiddleware = require('express-formidable');
 const Logger = require('./logs/logger');
-const fun = require('./src/functions/app.fun');
+const fun = require('./functions/app.fun');
 
 // ---------------------- parse args ----------------------- //
 let args = fun.parseArgs(process);

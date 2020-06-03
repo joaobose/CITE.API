@@ -1,5 +1,5 @@
 const winston = require('winston');
-const timeFun = require('../src/functions/general.fun/time.fun');
+const timeFun = require('../functions/general/time.fun');
 const env = process.env.NODE_ENV || 'development';
 
 const colors = {
@@ -7,7 +7,7 @@ const colors = {
   fgCyan: '\x1b[36m',
   fgMagenta: '\x1b[35m',
   fgGreen: '\x1b[32m',
-  fgRed: '\x1b[31m',
+  fgRed: '\x1b[31m'
 };
 
 // ------------------ logger singleton ------------------- //
@@ -22,7 +22,7 @@ class Logger {
       this.logger.add(
         new winston.transports.File({
           filename: 'logs/error.log',
-          level: 'error',
+          level: 'error'
         })
       );
 
@@ -56,7 +56,7 @@ class Logger {
     );
     this.logger.info({
       timestamp: timeFun.datetime(),
-      message: message,
+      message: message
     });
   }
 
@@ -80,7 +80,7 @@ class Logger {
     );
     this.logger.error({
       timestamp: timeFun.datetime(),
-      message: error,
+      message: error
     });
   }
 }
