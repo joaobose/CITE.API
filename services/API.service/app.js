@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const formidableMiddleware = require('express-formidable');
-const Logger = require('./logs/logger');
+const Logger = require('./classes/Logger');
 const fun = require('./functions/app.fun');
 
 // ---------------------- parse args ----------------------- //

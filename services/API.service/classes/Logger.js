@@ -61,7 +61,14 @@ class Logger {
    * @param {String} [name] The new service name.
    */
   constructor(name) {
-    this.logger = winston.createLogger({ format: winston.format.json() });
+    if (name != undefined) {
+      Logger.name = name;
+    }
+
+    this.logger = winston.createLogger({
+      format: winston.format.json(),
+      defaultMeta: { service: Logger.name }
+    });
 
     if (env !== 'test') {
       this.logger.add(
@@ -74,10 +81,6 @@ class Logger {
       this.logger.add(
         new winston.transports.File({ filename: 'logs/combined.log' })
       );
-    }
-
-    if (name != undefined) {
-      Logger.name = name;
     }
   }
 

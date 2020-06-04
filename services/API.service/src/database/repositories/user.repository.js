@@ -1,4 +1,4 @@
-const BaseRepository = require('../../../classes/BaseRepository');
+const BaseRepository = require('../../../classes/src/BaseRepository');
 const User = require('../models/User');
 const JWT = require('../models/JWT');
 

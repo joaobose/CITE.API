@@ -1,5 +1,5 @@
 const util = require('util');
-const Logger = require('../../logs/logger');
+const Logger = require('../../classes/Logger');
 const logger = new Logger();
 const User = require('./models/User');
 const WifiDevice = require('./models/WifiDevice');
