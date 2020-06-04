@@ -6,9 +6,50 @@ const WifiDevice = require('./models/WifiDevice');
 const Project = require('./models/Project');
 const Role = require('./models/Role');
 const Material = require('./models/Material');
+const BaseRepository = require('./repositories/base.repository');
 
 let reposTest = async () => {
   logger.info('Bootstrap reposTest');
+
+  // creating the repo
+  let userRepository = new BaseRepository(User);
+
+  // updating a user
+  let update = await userRepository.update(2, {});
+  logger.info(update);
+
+  // showing the changes and testing show
+  logger.info(
+    util.inspect(
+      JSON.parse(JSON.stringify(await userRepository.show(2))),
+      false,
+      null,
+      true
+    )
+  );
+
+  // creating a user
+  let newUser = await userRepository.create({
+    name: 'John',
+    lastname: 'Doe',
+    email: 'johndoe@gmail.com',
+    role_id: 3,
+    description: 'HEHEHE',
+    photo: null,
+    tutor_id: 1,
+    password: '$2b$11$PO4Xp7lp2rRd8xtDqqtemeRTWftezNM8MZX60Fwkg9yYDmFbDAOGW'
+  });
+  logger.info(
+    util.inspect(JSON.parse(JSON.stringify(newUser)), false, null, true)
+  );
+
+  // deleting a user
+  let del = await userRepository.delete(4);
+  logger.info(del);
+
+  // showing all users
+  let all = await userRepository.all();
+  logger.info(util.inspect(JSON.parse(JSON.stringify(all)), false, null, true));
 };
 
 let ORMTest = async () => {
