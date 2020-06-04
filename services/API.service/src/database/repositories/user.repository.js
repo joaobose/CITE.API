@@ -1,24 +1,153 @@
 const BaseRepository = require('../../../classes/BaseRepository');
 const User = require('../models/User');
+const JWT = require('../models/JWT');
 
 class UserRepository extends BaseRepository {
   constructor() {
     super(User);
   }
 
-  async projects(id) {}
+  /**
+   * Gets all the projects associated with an user instance.
+   *
+   * @access     public
+   * @memberof   UserRepository
+   *
+   * @param {Number} id The id of the user instance.
+   *
+   * @returns {[Project]} An array of projects.
+   */
+  async projects(id) {
+    let instance = await this.model.findOne({
+      where: { id: id },
+      include: ['projects'],
+      attributes: { exclude: ['*'] }
+    });
+    return instance ? instance.projects : null;
+  }
 
-  async managedProjects(id) {}
+  /**
+   * Gets all the managedProjects associated with an user instance.
+   *
+   * @access     public
+   * @memberof   UserRepository
+   *
+   * @param {Number} id The id of the user instance.
+   *
+   * @returns {[Project]} An array of projects.
+   */
+  async managedProjects(id) {
+    let instance = await this.model.findOne({
+      where: { id: id },
+      include: ['managedProjects'],
+      attributes: { exclude: ['*'] }
+    });
+    return instance ? instance.managedProjects : null;
+  }
 
-  async role(id) {}
+  /**
+   * Gets the role name of an user instance.
+   *
+   * @access     public
+   * @memberof   UserRepository
+   *
+   * @param {Number} id The id of the user instance.
+   *
+   * @returns {String} The name of the user role.
+   */
+  async role(id) {
+    let instance = await this.model.findOne({
+      where: { id: id },
+      include: ['role'],
+      attributes: { exclude: ['*'] }
+    });
+    return instance ? instance.role.name : null;
+  }
 
-  async applicants(id) {}
+  /**
+   * Gets all the applicants associated with an user instance.
+   *
+   * @access     public
+   * @memberof   UserRepository
+   *
+   * @param {Number} id The id of the user instance.
+   *
+   * @returns {[User]} An array of users
+   */
+  async applicants(id) {
+    let instance = await this.model.findOne({
+      where: { id: id },
+      include: ['applicants'],
+      attributes: { exclude: ['*'] }
+    });
+    return instance ? instance.applicants : null;
+  }
 
-  async tutor(id) {}
+  /**
+   * Gets associated tutor of an user instance.
+   *
+   * @access     public
+   * @memberof   UserRepository
+   *
+   * @param {Number} id The id of the user instance.
+   *
+   * @returns {User} An user instance.
+   */
+  async tutor(id) {
+    let instance = await this.model.findOne({
+      where: { id: id },
+      include: ['tutor'],
+      attributes: { exclude: ['*'] }
+    });
+    return instance ? instance.tutor : null;
+  }
 
-  async wifiDevices(id) {}
+  /**
+   * Gets all the wifiDevices associated with an user instance.
+   *
+   * @access     public
+   * @memberof   UserRepository
+   *
+   * @param {Number} id The id of the user instance.
+   *
+   * @returns {[WifiDevice]} An array of wifiDevices
+   */
+  async wifiDevices(id) {
+    let instance = await this.model.findOne({
+      where: { id: id },
+      include: ['wifiDevices'],
+      attributes: { exclude: ['*'] }
+    });
+    return instance ? instance.wifiDevices : null;
+  }
 
-  async showWithValidJWT(id) {}
+  /**
+   * Gets the valid JWT an user instance.
+   *
+   * @access     public
+   * @memberof   UserRepository
+   *
+   * @param {Number} id The id of the user instance.
+   *
+   * @returns {JWT} A JWT instance.
+   */
+  async validJWT(id) {
+    let instance = await this.model.findOne({
+      where: { id: id },
+      include: {
+        model: JWT,
+        as: 'JWT',
+        where: { valid: true },
+        attributes: { include: ['secret'] }
+      },
+      attributes: { exclude: ['*'] }
+    });
+
+    if (instance) {
+      return instance.JWT.length != 0 ? instance.JWT[0] : null;
+    }
+    return null;
+  }
 }
 
 module.exports = UserRepository;

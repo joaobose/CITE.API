@@ -13,10 +13,44 @@ let reposTest = async () => {
 
   // creating the repo
   let userRepository = new UserRepository();
+
+  // show inheritance
   let user = await userRepository.show(1);
   logger.info(
     util.inspect(JSON.parse(JSON.stringify(user)), false, null, true)
   );
+
+  // projects
+  let projects = await userRepository.projects(1);
+  logger.info(
+    util.inspect(JSON.parse(JSON.stringify(projects)), false, null, true)
+  );
+
+  // role
+  let role = await userRepository.role(1);
+  logger.info(role);
+
+  // applicants
+  let applicants = await userRepository.applicants(1);
+  logger.info(
+    util.inspect(JSON.parse(JSON.stringify(applicants)), false, null, true)
+  );
+
+  // tutor
+  let tutor = await userRepository.tutor(7);
+  logger.info(
+    util.inspect(JSON.parse(JSON.stringify(tutor)), false, null, true)
+  );
+
+  // wifi devices
+  let wifiDevices = await userRepository.wifiDevices(1);
+  logger.info(
+    util.inspect(JSON.parse(JSON.stringify(wifiDevices)), false, null, true)
+  );
+
+  // JWT
+  let jwt = await userRepository.validJWT(1);
+  logger.info(util.inspect(JSON.parse(JSON.stringify(jwt)), false, null, true));
 };
 
 let ORMTest = async () => {
