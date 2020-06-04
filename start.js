@@ -5,16 +5,8 @@ const config = require('./config/start.config.json');
 config.services.forEach((item) => {
   // ------------------ fork the node service --------------------- //
   let child = fork(`./services/${item.service}`, [item.name, item.port], {
-    silent: true
-  });
-
-  // ----------------------- catch stdio -------------------------- //
-  child.stdout.on('data', (data) => {
-    process.stdout.write(data.toString());
-  });
-
-  child.stderr.on('data', (data) => {
-    process.stdout.write(data.toString());
+    silent: true,
+    stdio: 'inherit'
   });
 
   // ----------------------- catch error -------------------------- //
