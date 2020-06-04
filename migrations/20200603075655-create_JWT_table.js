@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true
       },
 
-      owner: {
+      owner_id: {
         type: Sequelize.INTEGER(11),
         allowNull: false
       },

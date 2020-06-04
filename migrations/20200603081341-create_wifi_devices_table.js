@@ -26,7 +26,7 @@ module.exports = {
         }
       },
 
-      owner: {
+      owner_id: {
         type: Sequelize.INTEGER(11),
         allowNull: false
       },

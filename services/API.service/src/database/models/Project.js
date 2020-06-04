@@ -27,7 +27,7 @@ let Project = global.sequelize.define(
       }
     },
 
-    manager: {
+    manager_id: {
       type: Sequelize.INTEGER(11),
       allowNull: false
     },

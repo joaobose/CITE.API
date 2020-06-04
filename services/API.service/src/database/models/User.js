@@ -54,12 +54,12 @@ let User = global.sequelize.define(
 
     photo: Sequelize.STRING(255),
 
-    role: {
+    role_id: {
       type: Sequelize.INTEGER(11),
       allowNull: false
     },
 
-    tutor: Sequelize.INTEGER(11)
+    tutor_id: Sequelize.INTEGER(11)
   },
   { tableName: 'users' }
 );
@@ -67,24 +67,24 @@ let User = global.sequelize.define(
 // --------------------- Relationships ---------------------- //
 
 // ----------------------- JWT (1:m) ------------------------ //
-User.hasMany(JWT, { as: 'JWT', foreignKey: 'owner' });
-JWT.belongsTo(User, { as: 'owner', foreignKey: 'owner' });
+User.hasMany(JWT, { as: 'JWT', foreignKey: 'owner_id' });
+JWT.belongsTo(User, { as: 'owner', foreignKey: 'owner_id' });
 
 // -------------------- WifiDevice (1:m) --------------------- //
-User.hasMany(WifiDevice, { as: 'wifiDevices', foreignKey: 'owner' });
-WifiDevice.belongsTo(User, { as: 'owner', foreignKey: 'owner' });
+User.hasMany(WifiDevice, { as: 'wifiDevices', foreignKey: 'owner_id' });
+WifiDevice.belongsTo(User, { as: 'owner', foreignKey: 'owner_id' });
 
 // ------------------ Project manager (1:m) ------------------ //
-User.hasMany(Project, { as: 'managedProjects', foreignKey: 'manager' });
-Project.belongsTo(User, { as: 'manager', foreignKey: 'manager' });
+User.hasMany(Project, { as: 'managedProjects', foreignKey: 'manager_id' });
+Project.belongsTo(User, { as: 'manager', foreignKey: 'manager_id' });
 
 // ------------------------ Role (m:1) ----------------------- //
-Role.hasMany(User, { as: 'users', foreignKey: 'role' });
-User.belongsTo(Role, { as: 'role', foreignKey: 'role' });
+Role.hasMany(User, { as: 'users', foreignKey: 'role_id' });
+User.belongsTo(Role, { as: 'role', foreignKey: 'role_id' });
 
 // ----------------------- Tutor (m:1) ----------------------- //
-User.hasMany(User, { as: 'applicants', foreignKey: 'tutor' });
-User.belongsTo(User, { as: 'tutor', foreignKey: 'tutor' });
+User.hasMany(User, { as: 'applicants', foreignKey: 'tutor_id' });
+User.belongsTo(User, { as: 'tutor', foreignKey: 'tutor_id' });
 
 // ------------------- Project Member (n:m) ------------------ //
 

@@ -26,7 +26,7 @@ let WifiDevice = global.sequelize.define(
       }
     },
 
-    owner: {
+    owner_id: {
       type: Sequelize.INTEGER(11),
       allowNull: false
     },
@@ -39,4 +39,4 @@ let WifiDevice = global.sequelize.define(
   { tableName: 'WIFI_devices' }
 );
 
-module.exports = Role;
+module.exports = WifiDevice;

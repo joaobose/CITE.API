@@ -26,7 +26,7 @@ module.exports = {
         }
       },
 
-      manager: {
+      manager_id: {
         type: Sequelize.INTEGER(11),
         allowNull: false
       },
