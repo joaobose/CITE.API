@@ -7,8 +7,12 @@ const Project = require('./models/Project');
 const Role = require('./models/Role');
 const Material = require('./models/Material');
 
-let test = async () => {
-  logger.info('Hey bootstrap');
+let reposTest = async () => {
+  logger.info('Bootstrap reposTest');
+};
+
+let ORMTest = async () => {
+  logger.info('Bootstrap ORMTest');
 
   // ---------- get all users with it's releated entities ------------ //
   let users = await User.findAll({
@@ -67,4 +71,5 @@ let test = async () => {
   );
 };
 
-test();
+// ORMTest();
+reposTest();
