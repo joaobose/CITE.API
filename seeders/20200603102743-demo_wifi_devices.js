@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('WIFI_devices', [
       {
         description: 'Joao MBP',
-        owner: 1,
+        owner_id: 1,
         MAC: '71-80-EC-B0-D1-5E',
         enabled: true,
         createdAt: new Date(),
@@ -13,7 +13,7 @@ module.exports = {
       },
       {
         description: 'MSI GS66',
-        owner: 5,
+        owner_id: 5,
         MAC: '1F-7E-DC-A9-EE-5F',
         enabled: true,
         createdAt: new Date(),
@@ -21,7 +21,7 @@ module.exports = {
       },
       {
         description: 'THpi PS4',
-        owner: 1,
+        owner_id: 1,
         MAC: '8F-7A-EF-A9-CC-5F',
         enabled: true,
         createdAt: new Date(),
@@ -29,7 +29,7 @@ module.exports = {
       },
       {
         description: 'MSI GS66 but slower and fat',
-        owner: 2,
+        owner_id: 2,
         MAC: '1A-22-BB-9F-FF-00',
         enabled: true,
         createdAt: new Date(),
@@ -37,7 +37,7 @@ module.exports = {
       },
       {
         description: 'Joao 200$ laptop',
-        owner: 1,
+        owner_id: 1,
         MAC: '17-08-CE-00-EE-21',
         enabled: false,
         createdAt: new Date(),
