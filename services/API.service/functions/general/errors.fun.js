@@ -1,6 +1,6 @@
 const BaseError = require('../../classes/src/BaseError');
 
-let errorCatcher = (req, res, error) => {
+let catcher = (req, res, error) => {
   return async (catchedError) => {
     if (!error) {
       error = new BaseError({
@@ -20,7 +20,7 @@ let errorCatcher = (req, res, error) => {
   };
 };
 
-let errorHandler = (req, res, error) => {
+let thrower = (req, res, error) => {
   if (!error) {
     error = new BaseError({
       status: 500,
@@ -37,5 +37,5 @@ let errorHandler = (req, res, error) => {
   throw error.compact();
 };
 
-module.exports.errorCatcher = errorCatcher;
-module.exports.errorHandler = errorHandler;
+module.exports.catcher = catcher;
+module.exports.thrower = thrower;
