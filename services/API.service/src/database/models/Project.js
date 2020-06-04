@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const Material = require('./Material');
 
 let Project = global.sequelize.define(
   'Project',
@@ -41,5 +42,25 @@ let Project = global.sequelize.define(
   },
   { tableName: 'projects' }
 );
+
+// ----------------------- Relationships ---------------------- //
+
+// ------------------- Project Material (n:m) ------------------ //
+
+// usedBy
+Material.belongsToMany(Project, {
+  as: 'usedBy',
+  through: 'project_material',
+  foreignKey: 'material_id',
+  otherKey: 'project_id'
+});
+
+// materials
+Project.belongsToMany(Material, {
+  as: 'materials',
+  through: 'project_material',
+  foreignKey: 'project_id',
+  otherKey: 'material_id'
+});
 
 module.exports = Project;

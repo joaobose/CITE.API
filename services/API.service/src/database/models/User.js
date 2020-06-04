@@ -1,4 +1,8 @@
 const Sequelize = require('sequelize');
+const JWT = require('./JWT');
+const WifiDevice = require('./WifiDevice');
+const Project = require('./Project');
+const Role = require('./Role');
 
 let User = global.sequelize.define(
   'User',
@@ -59,5 +63,45 @@ let User = global.sequelize.define(
   },
   { tableName: 'users' }
 );
+
+// --------------------- Relationships ---------------------- //
+
+// ----------------------- JWT (1:m) ------------------------ //
+User.hasMany(JWT, { as: 'JWT', foreignKey: 'owner' });
+JWT.belongsTo(User, { as: 'owner', foreignKey: 'owner' });
+
+// -------------------- WifiDevice (1:m) --------------------- //
+User.hasMany(WifiDevice, { as: 'wifiDevices', foreignKey: 'owner' });
+WifiDevice.belongsTo(User, { as: 'owner', foreignKey: 'owner' });
+
+// ------------------ Project manager (1:m) ------------------ //
+User.hasMany(Project, { as: 'managedProjects', foreignKey: 'manager' });
+Project.belongsTo(User, { as: 'manager', foreignKey: 'manager' });
+
+// ------------------------ Role (m:1) ----------------------- //
+Role.hasMany(User, { as: 'users', foreignKey: 'role' });
+User.belongsTo(Role, { as: 'role', foreignKey: 'role' });
+
+// ----------------------- Tutor (m:1) ----------------------- //
+User.hasMany(User, { as: 'applicants', foreignKey: 'tutor' });
+User.belongsTo(User, { as: 'tutor', foreignKey: 'tutor' });
+
+// ------------------- Project Member (n:m) ------------------ //
+
+// projects
+User.belongsToMany(Project, {
+  as: 'projects',
+  through: 'project_member',
+  foreignKey: 'member_id',
+  otherKey: 'project_id'
+});
+
+// members
+Project.belongsToMany(User, {
+  as: 'members',
+  through: 'project_member',
+  foreignKey: 'project_id',
+  otherKey: 'member_id'
+});
 
 module.exports = User;
