@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const formidableMiddleware = require('express-formidable');
+const loggingMiddleware = require('./src/middleware/logging.middleware');
 const Logger = require('./classes/Logger');
 const fun = require('./functions/app.fun');
 
@@ -13,6 +14,9 @@ app.use(formidableMiddleware());
 
 // ------------------------ logger -------------------------- //
 const logger = new Logger(args.name);
+
+// ----------------------- logging -------------------------- //
+app.use(loggingMiddleware);
 
 // --------------------- db connection ---------------------- //
 require('./src/database/connection');
