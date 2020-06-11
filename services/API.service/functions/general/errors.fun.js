@@ -37,5 +37,5 @@ let thrower = (req, res, error) => {
   throw error.compact();
 };
 
-module.exports.catcher = catcher;
-module.exports.thrower = thrower;
+module.exports.catch = catcher;
+module.exports.throw = thrower;

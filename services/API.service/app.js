@@ -21,6 +21,12 @@ app.use(loggingMiddleware);
 // --------------------- db connection ---------------------- //
 require('./src/database/connection');
 
+// ------------------------ routes -------------------------- //
+const authRouter = require('./src/routes/auth.routes');
+app.use('/auth', authRouter);
+const userRouter = require('./src/routes/user.routes');
+app.use('/user', userRouter);
+
 // ------------------ starting the server ------------------- //
 fun.start(server, args.name, args.port, logger);
 

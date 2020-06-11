@@ -8,6 +8,23 @@ class UserRepository extends BaseRepository {
   }
 
   /**
+   * Gets an User instance by email
+   *
+   * @access     public
+   * @memberof   UserRepository
+   *
+   * @param {string} email The email of the user instance.
+   *
+   * @returns {User} An user instance.
+   */
+  async getByEmail(email) {
+    let instance = await this.model.findOne({
+      where: { email: email }
+    });
+    return instance;
+  }
+
+  /**
    * Gets all the projects associated with an user instance.
    *
    * @access     public
