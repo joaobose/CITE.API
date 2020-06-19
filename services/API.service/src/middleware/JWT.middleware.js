@@ -8,10 +8,26 @@ const fun = require('../../functions/general/errors.fun');
 
 module.exports = async (req, res, next) => {
   try {
-    logger.info('validating JWT ...');
+    logger.info('running Bearer scheme authorization ...');
 
-    // ------------------- getting the Auth JWT -------------------- //
-    let token = req.get('Authorization');
+    // ---------------------- getting the Auth -------------------- //
+    let auth = req.get('Authorization');
+    if (!auth) {
+      let reason = 'Missing authorization';
+      fun.throw(req, res, new Errors.UnauthorizedError(reason));
+    }
+    auth = auth.trim();
+    authSplit = auth.split(' ');
+
+    // ------------------- validating auth scheme ------------------- //
+    let authScheme = authSplit[0];
+    if (authScheme != 'Bearer') {
+      let reason = 'Wrong auth scheme, expected Bearer. given: ' + authScheme;
+      fun.throw(req, res, new Errors.UnauthorizedError(reason));
+    }
+
+    // ------------------ validating the token --------------------- //
+    let token = authSplit[1];
     if (!token) {
       fun.throw(req, res, new Errors.JWT.MissingJWTError());
     }
@@ -40,7 +56,7 @@ module.exports = async (req, res, next) => {
       fun.throw(req, res, new Errors.JWT.InvalidJWTError(token));
     }
 
-    logger.info('JWT validated');
+    logger.info('Request authorized by Bearer scheme');
     next();
   } catch (err) {
     logger.error(err);
