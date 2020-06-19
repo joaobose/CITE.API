@@ -5,9 +5,11 @@ const UpdateValidator = require('./update.validator');
 const DestroyValidator = require('./destroy.validator');
 
 module.exports = {
-  index: IndexValidator,
-  store: StoreValidator,
-  show: ShowValidator,
-  update: UpdateValidator,
-  destroy: DestroyValidator
+  RestValidators: {
+    index: IndexValidator,
+    store: StoreValidator,
+    show: ShowValidator,
+    update: UpdateValidator,
+    destroy: DestroyValidator
+  }
 };

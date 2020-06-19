@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt');
 const BCRYPT_SALT_ROUNDS = 11;
-const BaseController = require('../../../classes/src/BaseController');
-const UserRepository = require('../../database/repositories/user.repository');
-const JWTRepository = require('../../database/repositories/jwt.repository');
-const Logger = require('../../../classes/Logger');
-const Errors = require('../../errors');
+const BaseController = require('../../classes/src/BaseController');
+const UserRepository = require('../database/repositories/user.repository');
+const JWTRepository = require('../database/repositories/jwt.repository');
+const Logger = require('../../classes/Logger');
+const Errors = require('../errors');
 const logger = new Logger();
 const userRepository = new UserRepository();
 const jwtRepository = new JWTRepository();

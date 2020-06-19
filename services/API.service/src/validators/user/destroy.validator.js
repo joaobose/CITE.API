@@ -1,12 +1,12 @@
-const BaseValidator = require('../../../../../classes/src/BaseValidator');
-const Errors = require('../../../../errors');
-const fun = require('../../../../../functions/general/errors.fun');
+const BaseValidator = require('../../../classes/src/BaseValidator');
+const Errors = require('../../errors');
+const fun = require('../../../functions/general/errors.fun');
 const joi = require('joi');
 
-class UserShowValidator extends BaseValidator {
+class UserDestroyValidator extends BaseValidator {
   constructor() {
     super();
-    this.name = 'User show validator';
+    this.name = 'User destroy validator';
   }
 
   async validate(req, res) {
@@ -26,4 +26,4 @@ class UserShowValidator extends BaseValidator {
   }
 }
 
-module.exports = UserShowValidator;
+module.exports = UserDestroyValidator;
