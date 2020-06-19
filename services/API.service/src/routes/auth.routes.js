@@ -7,6 +7,6 @@ const fun = require('../../functions/src/routes/routes.fun')(
   new Controller()
 );
 
-fun.http.post('/login', 'login', new Validators.LoginValidator())();
+fun.post('/login', 'login', new Validators.LoginValidator())();
 
 module.exports = router;
