@@ -28,7 +28,8 @@ const userRouter = require('./src/routes/user.routes');
 app.use('/user', userRouter);
 
 // ------------------ starting the server ------------------- //
-fun.start(server, args.name, args.port, logger);
+fun.start(server, args.name, args.port, logger, args.listen);
 
 // -------------------- testing export ----------------------- //
-module.exports = server;
+module.exports.server = server;
+module.exports.app = app;

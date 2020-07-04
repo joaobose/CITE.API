@@ -7,7 +7,7 @@
  */
 let parseArgs = (process) => {
   let args = process.argv.slice(2);
-  return { name: args[0], port: args[1] };
+  return { name: args[0], port: args[1], listen: Boolean(args[2]) };
 };
 
 /**
@@ -17,9 +17,10 @@ let parseArgs = (process) => {
  * @param {String}             name      The server name.
  * @param {String}             port      The server port.
  * @param {Logger}             [logger]  The application logging object.
+ * @param {Boolean}            [listen]  A boolean that indicates if the server should start listing
  */
-let start = (server, name, port, logger) => {
-  if (port != undefined) {
+let start = (server, name, port, logger, listen) => {
+  if (port != undefined && listen) {
     server.listen(port, () => {
       if (logger != undefined) {
         logger.info(name + ' service started in port ' + port);

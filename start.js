@@ -4,7 +4,7 @@ const config = require('./config/start.config.json');
 // ------------------ loop through the services ------------------- //
 config.services.forEach((item) => {
   // ------------------ fork the node service --------------------- //
-  let child = fork(`./services/${item.service}`, [item.name, item.port], {
+  let child = fork(`./services/${item.service}`, [item.name, item.port, true], {
     silent: true,
     stdio: 'inherit'
   });
