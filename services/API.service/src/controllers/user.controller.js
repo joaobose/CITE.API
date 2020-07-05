@@ -4,6 +4,7 @@ const BaseController = require('../../classes/src/BaseController');
 const UserRepository = require('../database/repositories/user.repository');
 const UserTransform = require('../transforms/user.transform');
 const RoleTransform = require('../transforms/role.transform');
+const ProjectTransform = require('../transforms/project.transform');
 const Logger = require('../../classes/Logger');
 const Errors = require('../errors');
 const logger = new Logger();
@@ -15,7 +16,8 @@ class UserController extends BaseController {
 
     this.transforms = {
       user: new UserTransform(),
-      role: new RoleTransform()
+      role: new RoleTransform(),
+      project: new ProjectTransform()
     };
   }
 
@@ -84,6 +86,32 @@ class UserController extends BaseController {
 
     //---------------------- sending response ----------------------//
     this.response(res).JSONAPI.data(role, this.transforms.role.item);
+  }
+
+  async showWithProjects(req, res, validated) {
+    //---------------------- getting user data ---------------------//
+    let user = await userRepository.show(validated.id);
+    if (!user) {
+      this.throw(
+        req,
+        res,
+        new Errors.ResourceNotFoundError({
+          requested: { id: validated.id, type: 'user' }
+        })
+      );
+    }
+
+    //----------------------- getting projects ---------------------//
+    let projects = await userRepository.projects(user.id);
+
+    //------------------------- transforming -----------------------//
+    user = this.transforms.user.item(user);
+    user.relationships.projects = {
+      data: this.transforms.project.collection(projects)
+    };
+
+    //---------------------- sending response ----------------------//
+    this.response(res).JSONAPI.data(user);
   }
 }
 
