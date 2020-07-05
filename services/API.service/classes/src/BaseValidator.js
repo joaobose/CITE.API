@@ -1,7 +1,12 @@
+const autoBind = require('auto-bind');
 const errorFun = require('../../functions/general/errors.fun');
 
 class BaseValidator {
   name = 'Base validator';
+
+  constructor() {
+    autoBind(this);
+  }
 
   async validate(req, res) {
     return {};

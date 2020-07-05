@@ -17,6 +17,10 @@ class BaseTransform {
   collection(collection) {
     return R.map((item) => this.morph(item), collection);
   }
+
+  arbitrary(input) {
+    return Array.isArray(input) ? this.collection(input) : this.item(input);
+  }
 }
 
 module.exports = BaseTransform;

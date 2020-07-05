@@ -8,6 +8,25 @@ class UserRepository extends BaseRepository {
   }
 
   /**
+   * Gets an user instance with an arbitrary number of relationships
+   *
+   * @access     public
+   * @memberof   UserRepository
+   *
+   * @param {Number} id The id of the user instance.
+   *
+   * @returns {User} An user instance.
+   */
+  async showWith(id, include) {
+    let instance = await this.model.findOne({
+      where: { id: id },
+      include: include,
+      attributes: { exclude: ['password'] }
+    });
+    return instance;
+  }
+
+  /**
    * Gets an User instance by email
    *
    * @access     public

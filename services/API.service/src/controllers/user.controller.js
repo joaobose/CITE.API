@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const R = require('ramda');
 const BCRYPT_SALT_ROUNDS = 11;
 const BaseController = require('../../classes/src/BaseController');
 const UserRepository = require('../database/repositories/user.repository');
@@ -88,9 +89,9 @@ class UserController extends BaseController {
     this.response(res).JSONAPI.data(role, this.transforms.role.item);
   }
 
-  async showWithProjects(req, res, validated) {
+  async showWith(req, res, validated) {
     //---------------------- getting user data ---------------------//
-    let user = await userRepository.show(validated.id);
+    let user = await userRepository.showWith(validated.id, validated.with);
     if (!user) {
       this.throw(
         req,
@@ -101,17 +102,16 @@ class UserController extends BaseController {
       );
     }
 
-    //----------------------- getting projects ---------------------//
-    let projects = await userRepository.projects(user.id);
-
     //------------------------- transforming -----------------------//
-    user = this.transforms.user.item(user);
-    user.relationships.projects = {
-      data: this.transforms.project.collection(projects)
-    };
+    let transformed = this.transforms.user.item(user);
+    R.forEach((item) => {
+      transformed.relationships[item.rel] = {
+        data: this.transforms[item.entity].arbitrary(user[item.rel])
+      };
+    }, validated.relationships);
 
     //---------------------- sending response ----------------------//
-    this.response(res).JSONAPI.data(user);
+    this.response(res).JSONAPI.data(transformed);
   }
 }
 
