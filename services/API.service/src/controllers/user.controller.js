@@ -20,9 +20,7 @@ class UserController extends BaseController {
     });
 
     //---------------------- sending response ----------------------//
-    res.json({
-      data: users
-    });
+    this.response(res).JSONAPI.data(users);
   }
 
   async show(req, res, validated) {
@@ -43,9 +41,7 @@ class UserController extends BaseController {
     delete user.password;
 
     //---------------------- sending response ----------------------//
-    res.json({
-      data: user
-    });
+    this.response(res).JSONAPI.data(user);
   }
 
   async store(req, res, validated) {
@@ -57,13 +53,7 @@ class UserController extends BaseController {
     let user = await userRepository.create(validated);
 
     //---------------------- sending response ----------------------//
-    res.status(201).json({
-      data: {
-        id: user.id,
-        type: 'user',
-        links: { self: '/user/' + user.id }
-      }
-    });
+    this.response(res, 201).JSONAPI.reference(user.id, 'user');
   }
 
   async update(req, res, validated) {
@@ -71,12 +61,7 @@ class UserController extends BaseController {
     let affectedRows = await userRepository.update(validated.id, validated);
 
     //---------------------- sending response ----------------------//
-    res.json({
-      data: {
-        id: validated.id,
-        type: 'user',
-        links: { self: '/user/' + validated.id }
-      },
+    this.response(res).JSONAPI.reference(validated.id, 'user', {
       meta: {
         affectedRows: affectedRows[0]
       }
@@ -88,10 +73,8 @@ class UserController extends BaseController {
     let affectedRows = await userRepository.delete(validated.id);
 
     //---------------------- sending response ----------------------//
-    res.json({
-      meta: {
-        affectedRows: affectedRows
-      }
+    this.response(res).JSONAPI.meta({
+      affectedRows: affectedRows
     });
   }
 }

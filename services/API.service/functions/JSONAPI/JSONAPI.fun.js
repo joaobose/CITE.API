@@ -1,9 +1,9 @@
 const R = require('ramda');
-const BaseError = require('../../../../classes/src/BaseError');
-const errorFun = require('../../../general/errors.fun');
+const BaseError = require('../../classes/src/BaseError');
+const errorFun = require('../general/errors.fun');
 
 let data = (res, code) => {
-  return (data, transformFunction, links, meta) => {
+  return (data, transformFunction = (item) => item, { meta, links } = {}) => {
     // validating transform
     if (typeof transformFunction === 'function') {
       // transforming
@@ -42,7 +42,7 @@ let meta = (res, code) => {
 };
 
 let reference = (res, code) => {
-  return (id, type, refLinks, links, meta) => {
+  return (id, type, { meta, links, dataAttr } = {}) => {
     let document = {
       data: {
         id: id,
@@ -52,9 +52,10 @@ let reference = (res, code) => {
     };
 
     // adding optionals
-    if (refLinks) document.data.links = refLinks;
     if (meta) document.meta = meta;
     if (links) document.links = links;
+    if (dataAttr && typeof dataAttr === 'object')
+      document.data = R.mergeRight(document.data, dataAttr);
 
     // sending response
     res.status(code).json(document);
