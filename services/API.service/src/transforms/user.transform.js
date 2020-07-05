@@ -1,4 +1,3 @@
-const R = require('ramda');
 const BaseTransform = require('../../classes/src/BaseTransform');
 
 class UserTransform extends BaseTransform {

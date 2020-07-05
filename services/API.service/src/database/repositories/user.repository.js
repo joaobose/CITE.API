@@ -70,7 +70,7 @@ class UserRepository extends BaseRepository {
    *
    * @param {Number} id The id of the user instance.
    *
-   * @returns {String} The name of the user role.
+   * @returns {Role} The role of the user.
    */
   async role(id) {
     let instance = await this.model.findOne({
@@ -78,7 +78,7 @@ class UserRepository extends BaseRepository {
       include: ['role'],
       attributes: { exclude: ['*'] }
     });
-    return instance ? instance.role.name : null;
+    return instance ? instance.role : null;
   }
 
   /**

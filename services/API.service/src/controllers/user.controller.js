@@ -3,6 +3,7 @@ const BCRYPT_SALT_ROUNDS = 11;
 const BaseController = require('../../classes/src/BaseController');
 const UserRepository = require('../database/repositories/user.repository');
 const UserTransform = require('../transforms/user.transform');
+const RoleTransform = require('../transforms/role.transform');
 const Logger = require('../../classes/Logger');
 const Errors = require('../errors');
 const logger = new Logger();
@@ -13,7 +14,8 @@ class UserController extends BaseController {
     super();
 
     this.transforms = {
-      user: new UserTransform()
+      user: new UserTransform(),
+      role: new RoleTransform()
     };
   }
 
@@ -74,6 +76,14 @@ class UserController extends BaseController {
     this.response(res).JSONAPI.meta({
       affectedRows: affectedRows
     });
+  }
+
+  async role(req, res, validated) {
+    //--------------------- getting role data ----------------------//
+    let role = await userRepository.role(validated.id);
+
+    //---------------------- sending response ----------------------//
+    this.response(res).JSONAPI.data(role, this.transforms.role.item);
   }
 }
 
