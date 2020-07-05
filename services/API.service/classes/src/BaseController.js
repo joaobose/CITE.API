@@ -1,4 +1,6 @@
 const errorFun = require('../../functions/general/errors.fun');
+const R = require('ramda');
+const JSONAPIFun = require('../../functions/JSONAPI/JSONAPI.fun');
 
 class BaseController {
   throw(req, res, error) {
@@ -7,6 +9,15 @@ class BaseController {
 
   catch(req, res, error) {
     errorFun.catch(req, res, error);
+  }
+
+  response(res, code = 200) {
+    return R.mergeAll([
+      res.status(code),
+      {
+        JSONAPI: JSONAPIFun(res, code)
+      }
+    ]);
   }
 }
 
