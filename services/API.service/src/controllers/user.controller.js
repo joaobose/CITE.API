@@ -34,13 +34,7 @@ class UserController extends BaseController {
     //---------------------- getting user data ---------------------//
     let user = await userRepository.show(validated.id);
     if (!user) {
-      this.throw(
-        req,
-        res,
-        new Errors.ResourceNotFoundError({
-          requested: { id: validated.id, type: 'user' }
-        })
-      );
+      this.throw(req, res, new Errors.ResourceNotFoundError());
     }
 
     //---------------------- sending response ----------------------//
@@ -93,13 +87,7 @@ class UserController extends BaseController {
     //---------------------- getting user data ---------------------//
     let user = await userRepository.showWith(validated.id, validated.with);
     if (!user) {
-      this.throw(
-        req,
-        res,
-        new Errors.ResourceNotFoundError({
-          requested: { id: validated.id, type: 'user' }
-        })
-      );
+      this.throw(req, res, new Errors.ResourceNotFoundError());
     }
 
     //------------------------- transforming -----------------------//
