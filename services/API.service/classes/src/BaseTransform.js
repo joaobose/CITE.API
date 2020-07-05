@@ -1,6 +1,11 @@
 const R = require('ramda');
+const autoBind = require('auto-bind');
 
 class BaseTransform {
+  constructor() {
+    autoBind(this);
+  }
+
   morph(object) {
     return object;
   }
@@ -10,9 +15,7 @@ class BaseTransform {
   }
 
   collection(collection) {
-    return R.map((item) => {
-      return this.morph(item);
-    }, collection);
+    return R.map((item) => this.morph(item), collection);
   }
 }
 

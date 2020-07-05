@@ -2,25 +2,27 @@ const bcrypt = require('bcrypt');
 const BCRYPT_SALT_ROUNDS = 11;
 const BaseController = require('../../classes/src/BaseController');
 const UserRepository = require('../database/repositories/user.repository');
+const UserTransform = require('../transforms/user.transform');
 const Logger = require('../../classes/Logger');
 const Errors = require('../errors');
 const logger = new Logger();
 const userRepository = new UserRepository();
 
 class UserController extends BaseController {
+  constructor() {
+    super();
+
+    this.transforms = {
+      user: new UserTransform()
+    };
+  }
+
   async index(req, res, validated) {
     //--------------------- getting users data ---------------------//
     let users = await userRepository.all();
 
-    //------------------------ transforming ------------------------//
-    users = users.map((user) => {
-      let transformed = JSON.parse(JSON.stringify(user));
-      delete transformed.password;
-      return transformed;
-    });
-
     //---------------------- sending response ----------------------//
-    this.response(res).JSONAPI.data(users);
+    this.response(res).JSONAPI.data(users, this.transforms.user.collection);
   }
 
   async show(req, res, validated) {
@@ -36,12 +38,8 @@ class UserController extends BaseController {
       );
     }
 
-    //------------------------ transforming ------------------------//
-    user = JSON.parse(JSON.stringify(user));
-    delete user.password;
-
     //---------------------- sending response ----------------------//
-    this.response(res).JSONAPI.data(user);
+    this.response(res).JSONAPI.data(user, this.transforms.user.item);
   }
 
   async store(req, res, validated) {
