@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
       fun.throw(req, res, new Errors.UnauthorizedError(reason));
     }
     auth = auth.trim();
-    authSplit = auth.split(' ');
+    let authSplit = auth.split(' ');
 
     // ------------------- validating auth scheme ------------------- //
     let authScheme = authSplit[0];

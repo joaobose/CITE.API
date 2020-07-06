@@ -27,6 +27,12 @@ app.use('/auth', authRouter);
 const userRouter = require('./src/routes/user.routes');
 app.use('/user', userRouter);
 
+// ------------------------ socket -------------------------- //
+const io = require('socket.io')(server);
+const Socket = require('./classes/src/socket/Socket');
+const ApplicationBroadcaster = require('./src/socket/broadcaster/broadcaster');
+new Socket(io, new ApplicationBroadcaster(), null);
+
 // ------------------ starting the server ------------------- //
 fun.start(server, args.name, args.port, logger, args.listen);
 

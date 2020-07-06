@@ -1,4 +1,4 @@
-let channel = (name, rules) => {
+let channel = (name, rules = []) => {
   return { name: name, rules: rules };
 };
 
