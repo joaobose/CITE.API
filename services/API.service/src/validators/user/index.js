@@ -4,6 +4,7 @@ const ShowValidator = require('./show.validator');
 const UpdateValidator = require('./update.validator');
 const DestroyValidator = require('./destroy.validator');
 const ShowWithValidator = require('./showWith.validator');
+const AnnouncementValidator = require('./announcement.validator');
 
 module.exports = {
   RestValidators: {
@@ -13,5 +14,6 @@ module.exports = {
     update: UpdateValidator,
     destroy: DestroyValidator
   },
-  showWith: ShowWithValidator
+  showWith: ShowWithValidator,
+  announcement: AnnouncementValidator
 };

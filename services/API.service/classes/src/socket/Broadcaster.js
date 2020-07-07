@@ -1,3 +1,4 @@
+const R = require('ramda');
 const Logger = require('../../Logger');
 const logger = new Logger();
 const colors = {
@@ -16,6 +17,10 @@ class Broadcaster {
     return [];
   }
 
+  searchChannel(name) {
+    return R.find(R.propEq('name', name))(this.channels());
+  }
+
   broadcast(to, event, data) {
     if (!Broadcaster.io)
       logger.error(
@@ -29,8 +34,17 @@ class Broadcaster {
       return channel.name == to;
     }, this.channels());
 
-    if (exist) Broadcaster.io.to(to).emit(event, data);
-    else
+    if (exist) {
+      Broadcaster.io.to(to).emit(event, data);
+      logger.info(
+        colors.bgBroadcaster + 'BROADCASTER' + colors.reset + ' broadcasted:'
+      );
+      logger.info({
+        channel: to,
+        event: event,
+        data: data
+      });
+    } else
       logger.error(
         colors.bgBroadcaster +
           'BROADCASTER' +

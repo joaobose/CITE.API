@@ -12,12 +12,10 @@ class BaseController {
   }
 
   response(res, code = 200) {
-    return R.mergeAll([
-      res.status(code),
-      {
-        JSONAPI: JSONAPIFun(res, code)
-      }
-    ]);
+    return {
+      express: res.status(code),
+      JSONAPI: JSONAPIFun(res, code)
+    };
   }
 }
 
