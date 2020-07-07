@@ -7,7 +7,8 @@ const colors = {
   fgCyan: '\x1b[36m',
   fgMagenta: '\x1b[35m',
   fgGreen: '\x1b[32m',
-  fgRed: '\x1b[31m'
+  fgRed: '\x1b[31m',
+  fgYellow: '\u001b[33m'
 };
 
 /**
@@ -112,6 +113,39 @@ class Logger {
       message
     );
     this.logger.info({
+      timestamp: timeFun.datetime(),
+      message: message
+    });
+  }
+
+  /**
+   * Writes a message into the debug logging channel.
+   *
+   * @since      1.0
+   * @access     public
+   * @memberof   Logger
+   *
+   * @param {String} message The message to write.
+   */
+  debug(message) {
+    if (env == 'test') return;
+
+    console.log(
+      colors.fgMagenta +
+        timeFun.datetime() +
+        colors.reset +
+        ' - ' +
+        colors.fgCyan +
+        Logger.name +
+        colors.reset +
+        ' - ' +
+        colors.fgYellow +
+        'DEBUG' +
+        colors.reset +
+        ':',
+      message
+    );
+    this.logger.debug({
       timestamp: timeFun.datetime(),
       message: message
     });

@@ -6,9 +6,9 @@ const userRepository = new UserRepository();
 const Errors = require('../errors');
 const fun = require('../../functions/general/errors.fun');
 
-module.exports = async (req, res, next) => {
+module.exports = (validatedRole) => async (req, res, next) => {
   try {
-    logger.info('running Bearer scheme authorization ...');
+    logger.info('running ' + validatedRole + ' role authorization ...');
 
     // ---------------------- getting the Auth -------------------- //
     let auth = req.get('Authorization');
@@ -43,20 +43,19 @@ module.exports = async (req, res, next) => {
       fun.throw(req, res, new Errors.JWT.BadJWTError(token));
     }
 
-    // --------------- getting the valid JWT secret ---------------- //
-    let validJWT = await userRepository.validJWT(decoded.user);
-    if (!validJWT) {
-      fun.throw(req, res, new Errors.JWT.InvalidJWTError(token));
+    // -------------------- validate user role --------------------- //
+    let role = await userRepository.role(decoded.user);
+    if (!role) {
+      let reason = 'User does not belong to a role';
+      fun.throw(req, res, new Errors.UnauthorizedError(reason));
     }
 
-    // -------------------- verifying the JWT ----------------------- //
-    try {
-      jwt.verify(token, validJWT.secret);
-    } catch {
-      fun.throw(req, res, new Errors.JWT.InvalidJWTError(token));
+    if (role.name != validatedRole) {
+      let reason = 'User does not belong to ' + validatedRole + ' role';
+      fun.throw(req, res, new Errors.UnauthorizedError(reason));
     }
 
-    logger.info('Request authorized by Bearer scheme');
+    logger.info('Request authorized by ' + validatedRole + ' role scheme');
     next();
   } catch (err) {
     logger.error(err);
