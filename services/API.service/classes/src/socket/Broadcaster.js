@@ -3,7 +3,7 @@ const Logger = require('../../Logger');
 const logger = new Logger();
 const colors = {
   reset: '\x1b[0m',
-  bgBroadcaster: '\u001b[44m'
+  bfBroadcaster: '\u001b[32;1m'
 };
 
 class Broadcaster {
@@ -24,7 +24,7 @@ class Broadcaster {
   broadcast(to, event, data) {
     if (!Broadcaster.io)
       logger.error(
-        colors.bgBroadcaster +
+        colors.bfBroadcaster +
           'BROADCASTER' +
           colors.reset +
           ' Could not broadcast data, io found undefined'
@@ -37,7 +37,7 @@ class Broadcaster {
     if (exist) {
       Broadcaster.io.to(to).emit(event, data);
       logger.info(
-        colors.bgBroadcaster + 'BROADCASTER' + colors.reset + ' broadcasted:'
+        colors.bfBroadcaster + 'BROADCASTER' + colors.reset + ' broadcasted:'
       );
       logger.info({
         channel: to,
@@ -46,7 +46,7 @@ class Broadcaster {
       });
     } else
       logger.error(
-        colors.bgBroadcaster +
+        colors.bfBroadcaster +
           'BROADCASTER' +
           colors.reset +
           ' Could not broadcast data, channel ' +

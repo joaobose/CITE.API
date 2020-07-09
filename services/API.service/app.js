@@ -33,6 +33,11 @@ const Socket = require('./classes/src/socket/Socket');
 const ApplicationBroadcaster = require('./src/socket/broadcaster/broadcaster');
 new Socket(io, new ApplicationBroadcaster(), null);
 
+// ----------------------- Scheduler ------------------------ //
+const ApplicationScheduler = require('./src/scheduler/scheduler');
+const appScheduler = new ApplicationScheduler();
+if (args.listen) appScheduler.start();
+
 // ------------------ starting the server ------------------- //
 fun.start(server, args.name, args.port, logger, args.listen);
 
