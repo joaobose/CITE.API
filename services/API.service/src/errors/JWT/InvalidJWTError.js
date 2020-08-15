@@ -1,4 +1,4 @@
-const BaseError = require('../../../classes/src/BaseError');
+const BaseError = require('fun.framework/classes/src/BaseError');
 
 class InvalidJWTError extends BaseError {
   constructor(token) {

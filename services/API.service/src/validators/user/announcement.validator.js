@@ -1,8 +1,9 @@
-const BaseValidator = require('../../../classes/src/BaseValidator');
+const joi = require('joi');
+const BaseValidator = require('fun.framework/classes/src/BaseValidator');
+const fun = require('fun.framework/functions/general/errors.fun');
+
 const Broadcaster = require('../../socket/broadcaster/broadcaster');
 const Errors = require('../../errors');
-const fun = require('../../../functions/general/errors.fun');
-const joi = require('joi');
 
 class AnnouncementValidator extends BaseValidator {
   constructor() {

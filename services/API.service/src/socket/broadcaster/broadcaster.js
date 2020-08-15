@@ -1,5 +1,6 @@
-const Broadcaster = require('../../../classes/src/socket/Broadcaster');
-const fun = require('../../../functions/src/socket/broadcaster.fun');
+const Broadcaster = require('fun.framework/classes/src/socket/Broadcaster');
+const fun = require('fun.framework/functions/src/socket/broadcaster.fun');
+
 const JWTRule = require('./rules/JWT.rule');
 const RoleRule = require('./rules/role.rule');
 

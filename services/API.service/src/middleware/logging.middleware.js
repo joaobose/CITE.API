@@ -1,4 +1,4 @@
-const Logger = require('../../classes/Logger');
+const Logger = require('fun.framework/classes/Logger');
 const logger = new Logger();
 
 module.exports = (req, res, next) => {

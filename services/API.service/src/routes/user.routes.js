@@ -4,7 +4,8 @@ const JWTMiddleware = require('../middleware/JWT.middleware');
 const RoleMiddleware = require('../middleware/role.middleware');
 const Controller = require('../controllers/user.controller');
 const Validators = require('../validators/user');
-const fun = require('../../functions/src/routes/routes.fun')(
+
+const fun = require('fun.framework/functions/src/routes/routes.fun')(
   router,
   new Controller()
 );

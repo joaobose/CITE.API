@@ -1,5 +1,6 @@
-const Scheduler = require('../../classes/src/scheduler/Scheduler');
-const fun = require('../../functions/src/scheduler/scheduler.fun');
+const Scheduler = require('fun.framework/classes/src/scheduler/Scheduler');
+const fun = require('fun.framework/functions/src/scheduler/scheduler.fun');
+
 const BroadcastSchedule = require('./schedules/broadcast.schedule');
 const MinuteSchedule = require('./schedules/minute.schedule');
 const SecondsSchedule = require('./schedules/seconds.schedule');

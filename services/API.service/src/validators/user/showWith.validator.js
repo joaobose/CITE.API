@@ -1,8 +1,9 @@
-const BaseValidator = require('../../../classes/src/BaseValidator');
-const Errors = require('../../errors');
-const fun = require('../../../functions/general/errors.fun');
 const joi = require('joi');
 const R = require('ramda');
+const BaseValidator = require('fun.framework/classes/src/BaseValidator');
+const fun = require('fun.framework/functions/general/errors.fun');
+
+const Errors = require('../../errors');
 
 class UserShowWithValidator extends BaseValidator {
   constructor() {

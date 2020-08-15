@@ -1,5 +1,5 @@
-const BaseSchedule = require('../../../classes/src/scheduler/BaseSchedule');
-const Logger = require('../../../classes/Logger');
+const BaseSchedule = require('fun.framework/classes/src/scheduler/BaseSchedule');
+const Logger = require('fun.framework/classes/Logger');
 const logger = new Logger();
 
 class SecondsSchedule extends BaseSchedule {

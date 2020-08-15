@@ -1,10 +1,13 @@
 const jwt = require('jsonwebtoken');
-const UserRepository = require('../database/repositories/user.repository');
-const Logger = require('../../classes/Logger');
+
+const fun = require('fun.framework/functions/general/errors.fun');
+const Logger = require('fun.framework/classes/Logger');
 const logger = new Logger();
+
+const UserRepository = require('../database/repositories/user.repository');
 const userRepository = new UserRepository();
+
 const Errors = require('../errors');
-const fun = require('../../functions/general/errors.fun');
 
 module.exports = async (req, res, next) => {
   try {

@@ -1,4 +1,4 @@
-const BaseTransform = require('../../classes/src/BaseTransform');
+const BaseTransform = require('fun.framework/classes/src/BaseTransform');
 
 class UserTransform extends BaseTransform {
   morph(user) {

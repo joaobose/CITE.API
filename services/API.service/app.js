@@ -3,8 +3,9 @@ const app = express();
 const server = require('http').Server(app);
 const formidableMiddleware = require('express-formidable');
 const loggingMiddleware = require('./src/middleware/logging.middleware');
-const Logger = require('./classes/Logger');
-const fun = require('./functions/app.fun');
+
+const Logger = require('fun.framework/classes/Logger');
+const fun = require('fun.framework/functions/app.fun');
 
 // ---------------------- parse args ----------------------- //
 let args = fun.parseArgs(process);
@@ -29,7 +30,7 @@ app.use('/user', userRouter);
 
 // ------------------------ socket -------------------------- //
 const io = require('socket.io')(server);
-const Socket = require('./classes/src/socket/Socket');
+const Socket = require('fun.framework/classes/src/socket/Socket');
 const ApplicationBroadcaster = require('./src/socket/broadcaster/broadcaster');
 new Socket(io, new ApplicationBroadcaster(), null);
 

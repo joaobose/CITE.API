@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const rand = require('random-key');
-const BaseRepository = require('../../../classes/src/BaseRepository');
+
+const BaseRepository = require('fun.framework/classes/src/BaseRepository');
+
 const JWT = require('../models/JWT');
 
 class JWTRepository extends BaseRepository {

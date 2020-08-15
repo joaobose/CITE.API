@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Controller = require('../controllers/auth.controller');
 const Validators = require('../validators/auth');
-const fun = require('../../functions/src/routes/routes.fun')(
+
+const fun = require('fun.framework/functions/src/routes/routes.fun')(
   router,
   new Controller()
 );

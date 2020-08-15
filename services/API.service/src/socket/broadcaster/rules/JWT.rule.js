@@ -1,6 +1,7 @@
 const joi = require('joi');
 const jwt = require('jsonwebtoken');
-const BaseRule = require('../../../../classes/src/BaseRule');
+const BaseRule = require('fun.framework/classes/src/BaseRule');
+
 const UserRepository = require('../../../database/repositories/user.repository');
 const userRepository = new UserRepository();
 
