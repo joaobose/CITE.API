@@ -1,5 +1,8 @@
 /**
  * Returns the current ISO date string.
+ *
+ * @since  0.1.0
+ *
  * @returns {String} Current ISO date string.
  */
 let date = () => {
@@ -19,6 +22,9 @@ let date = () => {
 
 /**
  * Returns the current ISO datetime string.
+ *
+ * @since  0.1.0
+ *
  * @returns {String} Current ISO datetime string.
  */
 let datetime = () => {

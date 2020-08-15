@@ -17,7 +17,7 @@ const colors = {
  * This class is an enhancement of @code{console.log},
  * it provides better logging and also support microservice logging
  *
- * @since      1.0
+ * @since      0.1.0
  * @access     public
  *
  * @constructs Logger
@@ -26,7 +26,7 @@ class Logger {
   /**
    * The service logging name
    *
-   * @since  1.0
+   * @since  0.1.0
    * @access public
    *
    * @type     {String}
@@ -39,7 +39,7 @@ class Logger {
   /**
    * The winston logger instance.
    *
-   * @since  1.0
+   * @since  0.1.0
    * @access private
    *
    * @type     {winston.Logger}
@@ -54,7 +54,7 @@ class Logger {
    *
    * Constructs a logger and sets the service logger name if given.
    *
-   * @since      1.0
+   * @since      0.1.0
    * @access     public
    *
    * @constructs Logger
@@ -88,7 +88,7 @@ class Logger {
   /**
    * Writes a message into the info logging channel.
    *
-   * @since      1.0
+   * @since      0.1.0
    * @access     public
    * @memberof   Logger
    *
@@ -121,7 +121,7 @@ class Logger {
   /**
    * Writes a message into the debug logging channel.
    *
-   * @since      1.0
+   * @since      0.1.0
    * @access     public
    * @memberof   Logger
    *
@@ -154,7 +154,7 @@ class Logger {
   /**
    * Writes an error into the error logging channel.
    *
-   * @since      1.0
+   * @since      0.1.0
    * @access     public
    * @memberof   Logger
    *

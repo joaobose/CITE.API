@@ -1,7 +1,7 @@
 /**
  * Base repository representation.
  *
- * @since      1.0
+ * @since      0.1.0
  * @access     public
  *
  * @constructs BaseRepository
@@ -10,7 +10,7 @@ class BaseRepository {
   /**
    * Repository Model.
    *
-   * @since  1.0
+   * @since  0.1.0
    * @access protected
    *
    * @type     {Model}
@@ -23,7 +23,7 @@ class BaseRepository {
   /**
    * BaseRepository constructor
    *
-   * @since      1.0
+   * @since      0.1.0
    * @access     public
    *
    * @constructs BaseRepository
@@ -37,7 +37,7 @@ class BaseRepository {
   /**
    * Gets all the instances of the model.
    *
-   * @since      1.0
+   * @since      0.1.0
    * @access     public
    * @memberof BaseRepository
    *
@@ -50,7 +50,7 @@ class BaseRepository {
   /**
    * Creates an instance of the model.
    *
-   * @since      1.0
+   * @since      0.1.0
    * @access     public
    * @memberof BaseRepository
    *
@@ -65,7 +65,7 @@ class BaseRepository {
   /**
    * Updates an instance of the model.
    *
-   * @since      1.0
+   * @since      0.1.0
    * @access     public
    * @memberof BaseRepository
    *
@@ -81,7 +81,7 @@ class BaseRepository {
   /**
    * Deletes an instance of the model.
    *
-   * @since      1.0
+   * @since      0.1.0
    * @access     public
    * @memberof BaseRepository
    *
@@ -96,7 +96,7 @@ class BaseRepository {
   /**
    * Shows an instance of the model.
    *
-   * @since      1.0
+   * @since      0.1.0
    * @access     public
    * @memberof BaseRepository
    *

@@ -9,11 +9,39 @@ const colors = {
   bfMethod: '\u001b[35;1m'
 };
 
+const BaseSchedule = require('./BaseSchedule');
+
+/**
+ * An application Scheduler representation
+ *
+ * @since      0.1.0
+ * @access     public
+ *
+ * @constructs Scheduler
+ */
 class Scheduler {
+  /**
+   * Returns the schedules configurated for the application Scheduler.
+   *
+   * @since      0.1.0
+   * @access     public
+   * @memberof   Scheduler
+   *
+   * @returns    {[BaseSchedule]}   The configurated schedules for the application.
+   */
   schedules() {
     return [];
   }
 
+  /**
+   * Starts the application scheduler.
+   *
+   * This method should be final.
+   *
+   * @since      0.1.0
+   * @access     public
+   * @memberof   Scheduler
+   */
   start() {
     R.forEach((schedule) => {
       this.scheduleTimeout(schedule);
@@ -22,6 +50,15 @@ class Scheduler {
     }, this.schedules());
   }
 
+  /**
+   * Schedules an schedule javascript interval if needed
+   *
+   * @since      0.1.0
+   * @access     private
+   * @memberof   Scheduler
+   *
+   * @param {BaseSchedule} schedule
+   */
   scheduleInterval(schedule) {
     if (!schedule.interval) return;
 
@@ -44,6 +81,15 @@ class Scheduler {
     }, schedule.interval);
   }
 
+  /**
+   * Schedules an schedule cronjob if needed
+   *
+   * @since      0.1.0
+   * @access     private
+   * @memberof   Scheduler
+   *
+   * @param {BaseSchedule} schedule
+   */
   scheduleCron(schedule) {
     if (!schedule.cron) return;
 
@@ -67,6 +113,15 @@ class Scheduler {
     job.start();
   }
 
+  /**
+   * Schedules an schedule javascript timeout if needed
+   *
+   * @since      0.1.0
+   * @access     private
+   * @memberof   Scheduler
+   *
+   * @param {BaseSchedule} schedule
+   */
   scheduleTimeout(schedule) {
     if (!schedule.timeout) return;
 

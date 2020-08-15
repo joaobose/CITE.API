@@ -3,15 +3,32 @@ const logger = new Logger();
 const BaseError = require('../../../../classes/src/BaseError');
 const BaseValidator = require('../../../../classes/src/BaseValidator');
 const errorFun = require('../../../general/errors.fun');
+const BaseController = require('../../../../classes/src/BaseController');
 
 /**
- * Decription here
+ * An express middleware handler function
+ * @typedef {(req: Express.Request, res: Express.Response, next: Middleware) => void} Middleware
+ */
+
+/**
+ * A fun route, product of a router method high order function
+ * @typedef {(middleware: [Middleware] = []) => void} Route
+ */
+
+/**
+ * A fun method, product of a evaluation of the fun.method high order function in a particular http method
+ * @typedef {(route: String, handler: String, validator: BaseValidator = new BaseValidator()) => Route} Method
+ */
+
+/**
+ * Encapsulates a fun router HTTP method route
  *
- * @param {Express.Router}   router     The router that will handle the method
- * @param {BaseController}   controller   The controller that will handle the resource
+ * @since  0.1.0
  *
- * @returns {(String) => (String, String, BaseValidator) => ([Middleware])} A high grade funtion that handles a
- *                                                                          http method call.
+ * @param {Express.Router}   router       The router that will handle the method.
+ * @param {BaseController}   controller   The controller that will handle the resource.
+ *
+ * @returns {(method: String) => Method } A high grade funtion that handles a http method route.
  */
 let method = (router, controller) => {
   return (method) => {

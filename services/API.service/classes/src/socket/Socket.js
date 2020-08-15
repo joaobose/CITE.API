@@ -7,7 +7,35 @@ const colors = {
   bgBroadcaster: '\u001b[44m'
 };
 
+const Broadcaster = require('./Broadcaster');
+
+/**
+ * The application WebSocket representation
+ *
+ * Currently only supports socket.io.
+ *
+ * This class should be final
+ *
+ * @since      0.1.0
+ * @access     public
+ *
+ * @constructs Socket
+ */
 class Socket {
+  /**
+   * Socket constructor, receives the socket.io server, the application broadcaster
+   * and the application event catcher.
+   *
+   * @since      0.1.0
+   * @access     public
+   *
+   * @constructs Socket
+   *
+   * @param {SocketIO.Server}  io           The application socket.io server.
+   * @param {Broadcaster}      broadcaster  The application broadcaster.
+   * @param {Catcher}          catcher      The application event catcher.
+   *
+   */
   constructor(io, broadcaster, catcher) {
     autoBind(this);
 
@@ -20,6 +48,13 @@ class Socket {
     // this.catcher.set(io);
   }
 
+  /**
+   * Setups the application socket interactions.
+   *
+   * @since      0.1.0
+   * @access     private
+   * @memberof   Socket
+   */
   setup() {
     this.io.on('connection', (socket) => {
       logger.info('Socket ' + socket.id + ' has connected to server');
@@ -33,6 +68,17 @@ class Socket {
     });
   }
 
+  /**
+   * Setups the application broadcasting interactions for a given socket.
+   *
+   * @since      0.1.0
+   * @access     private
+   * @memberof   Socket
+   *
+   * @param      {SocketIO.Socket}   socket  The given socket.
+   * @param      {any}               data    The data that the socket sent at its connection.
+   *
+   */
   setupBroadcaster(socket, data) {
     R.forEach(async (channel) => {
       let evaluations = R.map((rule) => rule.eval(data), channel.rules);

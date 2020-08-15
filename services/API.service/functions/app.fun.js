@@ -1,6 +1,8 @@
 /**
  * Parses the main process arguments to obtain app related parameter.
  *
+ * @since  0.1.0
+ *
  * @param {NodeJS.Process} process The application main process.
  *
  * @returns {Object} The application arguments.
@@ -12,6 +14,8 @@ let parseArgs = (process) => {
 
 /**
  * Starts the given server.
+ *
+ * @since  0.1.0
  *
  * @param {NodeJS.http.Server} server    The http server to start.
  * @param {String}             name      The server name.
