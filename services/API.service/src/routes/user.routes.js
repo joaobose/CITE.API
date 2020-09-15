@@ -13,11 +13,11 @@ const fun = require('fun.framework/functions/src/routes/routes.fun')(
 fun.group([JWTMiddleware])([
   fun.rest(Validators.RestValidators),
   fun.get('/:id/role', 'role', new Validators.RestValidators.show()),
-  fun.get('/:id/with', 'showWith', new Validators.showWith())
-]);
+  fun.get('/:id/with', 'showWith', new Validators.showWith()),
 
-fun.group([JWTMiddleware, RoleMiddleware('board')])([
-  fun.post('/announcement', 'announcement', new Validators.announcement())
+  fun.subgroup([RoleMiddleware('board')])([
+    fun.post('/announcement', 'announcement', new Validators.announcement())
+  ])
 ]);
 
 module.exports = router;
