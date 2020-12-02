@@ -5,7 +5,6 @@
   "main": "app.js",
   "scripts": {
     "start": "node start.js",
-    "fun-install": "node npm-install.js",
     "dev-db:reset": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all",
     "test-db:reset": "NODE_ENV=test sequelize db:migrate:undo:all && NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all"
   },
@@ -20,6 +19,7 @@
   },
   "homepage": "https://github.com/joaobose/CITE.API#readme",
   "dependencies": {
+    "cite.api.service": "file:services/API.service",
     "fun.framework": "0.2.0",
     "mysql2": "^2.1.0",
     "ramda": "^0.27.0",
