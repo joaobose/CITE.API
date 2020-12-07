@@ -28,6 +28,12 @@ app.use('/auth', authRouter);
 const userRouter = require('./src/routes/user.routes');
 app.use('/user', userRouter);
 
+// ------------------------- docs --------------------------- //
+// app.use('/', express.static(__dirname + '/apidoc'));
+
+// ------------------------ public -------------------------- //
+// app.use('/public/', express.static(__dirname + '/public'));
+
 // ------------------------ socket -------------------------- //
 const io = require('socket.io')(server);
 const Socket = require('fun.framework/classes/src/socket/Socket');
