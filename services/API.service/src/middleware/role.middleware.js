@@ -1,6 +1,5 @@
-const jwt = require('jsonwebtoken');
-
 const fun = require('fun.framework/functions/general/errors.fun');
+const JWTFun = require('fun.framework/functions/general/JWT.fun');
 const Logger = require('fun.framework/classes/Logger');
 const logger = new Logger();
 
@@ -13,41 +12,12 @@ module.exports = (validatedRole) => async (req, res, next) => {
   try {
     logger.info('running ' + validatedRole + ' role authorization ...');
 
-    // ---------------------- getting the Auth -------------------- //
-    let auth = req.get('Authorization');
-    if (!auth) {
-      let reason = 'Missing authorization';
-      fun.throw(req, res, new Errors.UnauthorizedError(reason));
-    }
-    auth = auth.trim();
-    let authSplit = auth.split(' ');
-
-    // ------------------- validating auth scheme ------------------- //
-    let authScheme = authSplit[0];
-    if (authScheme != 'Bearer') {
-      let reason = 'Wrong auth scheme, expected Bearer. given: ' + authScheme;
-      fun.throw(req, res, new Errors.UnauthorizedError(reason));
-    }
-
-    // ------------------ validating the token --------------------- //
-    let token = authSplit[1];
-    if (!token) {
-      fun.throw(req, res, new Errors.JWT.MissingJWTError());
-    }
-
-    // ------------------ decoding the Auth JWT -------------------- //
-    let decoded = jwt.decode(token);
-    if (!decoded) {
-      fun.throw(req, res, new Errors.JWT.BadJWTError(token));
-    }
-
-    // ----------------- validate decoded user id ------------------ //
-    if (isNaN(decoded.user)) {
-      fun.throw(req, res, new Errors.JWT.BadJWTError(token));
-    }
+    // --------------------- validate schema ----------------------- //
+    let schema = JWTFun.http.decodeBearerScheme(req, res);
+    let userId = JWTFun.http.validateUserIdentifierFromSchema(req, res, schema);
 
     // -------------------- validate user role --------------------- //
-    let role = await userRepository.role(decoded.user);
+    let role = await userRepository.role(userId);
     if (!role) {
       let reason = 'User does not belong to a role';
       fun.throw(req, res, new Errors.UnauthorizedError(reason));

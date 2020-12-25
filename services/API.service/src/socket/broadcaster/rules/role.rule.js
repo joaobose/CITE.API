@@ -1,5 +1,5 @@
 const joi = require('joi');
-const jwt = require('jsonwebtoken');
+const JWTFun = require('fun.framework/functions/general/JWT.fun');
 const BaseRule = require('fun.framework/classes/src/BaseRule');
 
 const UserRepository = require('../../../database/repositories/user.repository');
@@ -25,27 +25,11 @@ class RoleRule extends BaseRule {
   }
 
   async predicate(body) {
-    // ---------------------- getting the Auth -------------------- //
-    let auth = body.authorization.trim();
-    let authSplit = auth.split(' ');
-
-    // ------------------- validating auth scheme ------------------ //
-    let authScheme = authSplit[0];
-    if (authScheme != 'Bearer') return false;
-
-    // ------------------ validating the token --------------------- //
-    let token = authSplit[1];
-    if (!token) return false;
-
-    // ------------------ decoding the Auth JWT -------------------- //
-    let decoded = jwt.decode(token);
-    if (!decoded) return false;
-
-    // ----------------- validate decoded user id ------------------ //
-    if (isNaN(decoded.user)) return false;
+    let schema = JWTFun.decodeBearerScheme(body.authorization);
+    let userId = JWTFun.validateUserIdentifierFromSchema(schema);
 
     // -------------------- validate user role --------------------- //
-    let role = await userRepository.role(decoded.user);
+    let role = await userRepository.role(userId);
     if (!role) return false;
 
     return role.name == this.validatedRole;
