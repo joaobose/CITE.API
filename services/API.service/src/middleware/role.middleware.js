@@ -31,6 +31,6 @@ module.exports = (validatedRole) => async (req, res, next) => {
     logger.info('Request authorized by ' + validatedRole + ' role scheme');
     next();
   } catch (err) {
-    logger.error(err);
+    fun.internal(req, res, err);
   }
 };

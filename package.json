@@ -31,7 +31,7 @@
   "homepage": "https://github.com/joaobose/CITE.API#readme",
   "dependencies": {
     "cite.api.service": "file:services/API.service",
-    "fun.framework": "0.3.0-7",
+    "fun.framework": "0.3.0-13",
     "mysql2": "^2.1.0",
     "ramda": "^0.27.0",
     "sequelize": "^5.21.11"
