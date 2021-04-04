@@ -29,7 +29,7 @@
     "ramda": "^0.27.0",
     "random-key": "^0.3.2",
     "sequelize": "^5.21.11",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "uuid": "^8.3.2",
     "winston": "^3.2.1"
   },
