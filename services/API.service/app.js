@@ -49,5 +49,4 @@ if (args.listen) appScheduler.start();
 fun.start(server, args.name, args.port, logger, args.listen);
 
 //-------------------- testing export ----------------------//
-module.exports.server = server;
 module.exports.app = app;
