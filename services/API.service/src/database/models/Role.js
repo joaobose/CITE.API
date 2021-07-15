@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-let Role = global.sequelize.define(
-  'Role',
+class Role extends Sequelize.Model {}
+Role.init(
   {
     id: {
       type: Sequelize.INTEGER(11),
@@ -15,7 +15,7 @@ let Role = global.sequelize.define(
       type: Sequelize.STRING(255)
     }
   },
-  { tableName: 'roles' }
+  { sequelize, tableName: 'roles' }
 );
 
 module.exports = Role;

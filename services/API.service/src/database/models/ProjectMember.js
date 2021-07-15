@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-let ProjectMember = global.sequelize.define(
-  'ProjectMember',
+class ProjectMember extends Sequelize.Model {}
+ProjectMember.init(
   {
     id: {
       type: Sequelize.INTEGER(11),
@@ -13,7 +13,7 @@ let ProjectMember = global.sequelize.define(
     memberId: Sequelize.INTEGER(11),
     projectId: Sequelize.INTEGER(11)
   },
-  { tableName: 'projectMember' }
+  { sequelize, tableName: 'projectMember' }
 );
 
 module.exports = ProjectMember;

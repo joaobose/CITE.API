@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const Material = require('./Material');
 
-let Project = global.sequelize.define(
-  'Project',
+class Project extends Sequelize.Model {}
+Project.init(
   {
     id: {
       type: Sequelize.INTEGER(11),
@@ -40,12 +40,12 @@ let Project = global.sequelize.define(
 
     status: Sequelize.ENUM('queued', 'inProgress', 'cancelled', 'finished')
   },
-  { tableName: 'projects' }
+  { sequelize, tableName: 'projects' }
 );
 
-// ----------------------- Relationships ---------------------- //
+//------------------------------------- Relationships
 
-// ------------------- Project Material (n:m) ------------------ //
+//---------- Project Material (n:m)
 
 // usedBy
 Material.belongsToMany(Project, {

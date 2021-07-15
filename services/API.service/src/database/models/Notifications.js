@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-let Notification = global.sequelize.define(
-  'Notification',
+class Notification extends Sequelize.Model {}
+Notification.init(
   {
     id: {
       type: Sequelize.INTEGER(11),
@@ -29,7 +29,7 @@ let Notification = global.sequelize.define(
 
     localization: Sequelize.STRING
   },
-  { tableName: 'notifications' }
+  { sequelize, tableName: 'notifications' }
 );
 
 module.exports = Notification;

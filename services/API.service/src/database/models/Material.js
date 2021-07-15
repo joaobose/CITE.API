@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-let Material = global.sequelize.define(
-  'Material',
+class Material extends Sequelize.Model {}
+Material.init(
   {
     id: {
       type: Sequelize.INTEGER(11),
@@ -31,7 +31,7 @@ let Material = global.sequelize.define(
       defaultValue: true
     }
   },
-  { tableName: 'materials' }
+  { sequelize, tableName: 'materials' }
 );
 
 module.exports = Material;

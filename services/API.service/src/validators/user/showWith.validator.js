@@ -12,7 +12,7 @@ class UserShowWithValidator extends BaseValidator {
   }
 
   async validate(req, res) {
-    //---------------------- validate with existance ---------------------//
+    //---------------------- validate with existance
 
     let validator = joi.object().keys({
       relationships: joi.string().required()
@@ -26,7 +26,7 @@ class UserShowWithValidator extends BaseValidator {
       .validate(params, validator)
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
-    //---------------------- validate params value ----------------------//
+    //---------------------- validate params value
 
     validator = joi.object().keys({
       id: joi.number().integer().required(),
@@ -48,9 +48,10 @@ class UserShowWithValidator extends BaseValidator {
       .validate(params, validator)
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
-    params.relationships = R.map((rel) => {
-      return { rel: rel, entity: this.entityForRel(rel) };
-    }, params.with);
+    params.relationships = R.map(
+      (rel) => ({ rel: rel, entity: this.entityForRel(rel) }),
+      params.with
+    );
 
     return params;
   }

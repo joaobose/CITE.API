@@ -10,13 +10,13 @@ const Errors = require('../errors');
 
 module.exports = (validatedRole) => async (req, res, next) => {
   try {
-    logger.info('running ' + validatedRole + ' role authorization ...');
+    logger.debug(`running ${validatedRole} role authorization ...`);
 
-    // --------------------- validate schema ----------------------- //
+    //--------------------- validate schema
     let schema = JWTFun.http.decodeBearerScheme(req, res);
     let userId = JWTFun.http.validateUserIdentifierFromSchema(req, res, schema);
 
-    // -------------------- validate user role --------------------- //
+    //-------------------- validate user role
     let role = await userRepository.role(userId);
     if (!role) {
       let reason = 'User does not belong to a role';
@@ -24,11 +24,11 @@ module.exports = (validatedRole) => async (req, res, next) => {
     }
 
     if (role.name != validatedRole) {
-      let reason = 'User does not belong to ' + validatedRole + ' role';
+      let reason = `User does not belong to ${validatedRole} role`;
       fun.throw(req, res, new Errors.UnauthorizedError(reason));
     }
 
-    logger.info('Request authorized by ' + validatedRole + ' role scheme');
+    logger.debug(`Request authorized by ${validatedRole} role scheme`);
     next();
   } catch (err) {
     fun.internal(req, res, err);

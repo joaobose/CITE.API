@@ -1,12 +1,22 @@
 const BaseTransform = require('fun.framework/classes/src/BaseTransform');
+const RoleTransform = require('./role.transform');
+const ProjectTransform = require('./project.transform');
 
 class UserTransform extends BaseTransform {
+  constructor() {
+    super();
+    this.transforms = {
+      role: new RoleTransform(),
+      project: new ProjectTransform(),
+      user: this
+    };
+  }
+
   morph(user) {
     return {
       id: user.id,
       type: 'user',
       attributes: {
-        id: user.id,
         name: user.name,
         lastname: user.lastname,
         email: user.email,
@@ -16,12 +26,26 @@ class UserTransform extends BaseTransform {
       },
       relationships: {
         role: {
-          data: { id: user.roleId, type: 'role' },
-          links: { related: '/user/' + user.id + '/role' }
-        }
-      },
-      links: {
-        self: '/user/' + user.id
+          data: !!user.role
+            ? this.transforms.role.item(user.role)
+            : {
+                id: user.roleId,
+                type: 'role'
+              }
+        },
+        ...(user.projects && {
+          projects: { data: this.transforms.project.collection(user.projects) }
+        }),
+        ...(user.managedProjects && {
+          managedProjects: {
+            data: this.transforms.project.collection(user.managedProjects)
+          }
+        }),
+        ...(user.applicants && {
+          applicants: {
+            data: this.transforms.user.collection(user.applicants)
+          }
+        })
       }
     };
   }

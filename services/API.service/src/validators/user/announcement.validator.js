@@ -28,7 +28,7 @@ class AnnouncementValidator extends BaseValidator {
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
     if (!this.broadcaster.searchChannel(params.channel)) {
-      let reason = params.channel + ' channel is not registered for broadcast';
+      let reason = `${params.channel} channel is not registered for broadcast`;
       fun.throw(req, res, new Errors.BadRequestError(reason));
     }
 

@@ -10,9 +10,9 @@ const Errors = require('../errors');
 
 module.exports = async (req, res, next) => {
   try {
-    logger.info('running Bearer scheme authorization ...');
+    logger.debug('running Bearer scheme authorization ...');
 
-    // --------------------- validate schema ----------------------- //
+    //--------------------- validate schema
     let schema = JWTFun.http.decodeBearerScheme(req, res);
     await JWTFun.http.verifyUserToken(
       req,
@@ -21,7 +21,7 @@ module.exports = async (req, res, next) => {
       userRepository.validJWT
     );
 
-    logger.info('Request authorized by Bearer scheme');
+    logger.debug('Request authorized by Bearer scheme');
     next();
   } catch (err) {
     fun.internal(req, res, err);

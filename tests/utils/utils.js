@@ -1,9 +1,13 @@
 const request = require('supertest');
 const { exec } = require('child_process');
-const config = require('../test.config.json');
 const env = process.env.NODE_ENV || 'development';
-const loginService = require(config.loginService);
+const config = require('../test.config.json');
+const microservice = config.microservice;
+const loginService = config.loginService;
 const loginRoute = config.loginRoute;
+
+const matchers = require('./jest.joi');
+expect.extend(matchers);
 
 let login = async (email, password) => {
   let localBody = {
@@ -15,27 +19,56 @@ let login = async (email, password) => {
   return res.body.data.attributes.token;
 };
 
-let resetDatabase = async () => {
-  return new Promise((resolve, reject) => {
-    const migrateReset = exec(
-      'NODE_ENV=' +
-        env +
-        ' sequelize db:seed:undo:all && NODE_ENV=' +
-        env +
-        ' sequelize db:seed:all',
+let resetDatabase = async () =>
+  new Promise((resolve, reject) => {
+    exec(
+      `NODE_ENV=${env} npx sequelize db:seed:undo:all && NODE_ENV=${env} npx sequelize db:seed:all`,
       { env: process.env },
       (err, stdout, stderr) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
+        if (err) reject(err);
+        else resolve();
       }
     );
-    // migrateReset.stdout.pipe(process.stdout);
-    // migrateReset.stderr.pipe(process.stderr);
   });
+
+let expectEntityMatch = async (
+  route,
+  expectedId,
+  expectedBody,
+  schema,
+  secret
+) => {
+  let res = await request(microservice)
+    .get(`${route}`)
+    .set('x-gateway-secret', `${secret}`);
+
+  //------------- Checking response
+  expect(res.statusCode).toEqual(200);
+
+  //-------------- Check attributes
+  expect(res.body).toMatchSchema(schema, {});
+
+  //-------------- Check values
+  let data = res.body.data;
+
+  expect(data.id).toBe(expectedId);
+
+  for (let key of Object.keys(expectedBody))
+    expect(data.attributes[key]).toBe(expectedBody[key]);
 };
 
-module.exports.login = login;
-module.exports.resetDatabase = resetDatabase;
+let expectNotFound = async (route, secret) => {
+  let res = await request(microservice)
+    .get(`${route}`)
+    .set('x-gateway-secret', `${secret}`);
+
+  //------------- Checking response
+  expect(res.statusCode).toEqual(404);
+};
+
+module.exports = {
+  login: login,
+  resetDatabase: resetDatabase,
+  expectEntityMatch: expectEntityMatch,
+  expectNotFound: expectNotFound
+};

@@ -9,7 +9,7 @@ class RoleRule extends BaseRule {
   constructor(validatedRole) {
     super();
     this.validatedRole = validatedRole;
-    this.name = this.validatedRole + ' role rule';
+    this.name = `${this.validatedRole} role rule`;
   }
 
   async body(data) {
@@ -28,11 +28,10 @@ class RoleRule extends BaseRule {
     let schema = JWTFun.decodeBearerScheme(body.authorization);
     let userId = JWTFun.validateUserIdentifierFromSchema(schema);
 
-    // -------------------- validate user role --------------------- //
+    //-------------------- validate user role
     let role = await userRepository.role(userId);
-    if (!role) return false;
 
-    return role.name == this.validatedRole;
+    return !!role && role.name == this.validatedRole;
   }
 
   async debug() {

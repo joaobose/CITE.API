@@ -6,7 +6,6 @@ class ProjectTransform extends BaseTransform {
       id: project.id,
       type: 'project',
       attributes: {
-        id: project.id,
         name: project.name,
         description: project.description,
         startedAt: project.startedAt,

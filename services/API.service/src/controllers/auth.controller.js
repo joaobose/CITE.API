@@ -24,24 +24,20 @@ class AuthController extends BaseController {
   }
 
   async login(req, res, validated) {
-    //---------------------- getting user data ---------------------//
+    //---------------------- getting user data
     let user = await userRepository.getByEmail(validated.email);
-    if (!user) {
-      this.throw(req, res, new Errors.Auth.WrongCredentialsError());
-    }
+    if (!user) this.throw(req, res, new Errors.Auth.WrongCredentialsError());
 
-    //----------------------- auth comparison ----------------------//
+    //---------------------- auth comparison
     let auth = await bcrypt.compare(validated.password, user.password);
-    if (!auth) {
-      this.throw(req, res, new Errors.Auth.WrongCredentialsError());
-    }
+    if (!auth) this.throw(req, res, new Errors.Auth.WrongCredentialsError());
 
-    //---------------------- token management ----------------------//
+    //---------------------- token management
     await jwtRepository.removeAllTokens(user);
     let token = await jwtRepository.generateToken(user);
     user.token = token;
 
-    //---------------------- sending response ----------------------//
+    //---------------------- sending response
     this.response(res).JSONAPI.data(user, this.transforms.user.item);
   }
 }

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-let WifiDevice = global.sequelize.define(
-  'WifiDevice',
+class WifiDevice extends Sequelize.Model {}
+WifiDevice.init(
   {
     id: {
       type: Sequelize.INTEGER(11),
@@ -36,7 +36,7 @@ let WifiDevice = global.sequelize.define(
       defaultValue: true
     }
   },
-  { tableName: 'WIFIDevices' }
+  { sequelize, tableName: 'WIFIDevices' }
 );
 
 module.exports = WifiDevice;

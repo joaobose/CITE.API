@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-let ProjectMaterial = global.sequelize.define(
-  'ProjectMaterial',
+class ProjectMaterial extends Sequelize.Model {}
+ProjectMaterial.init(
   {
     id: {
       type: Sequelize.INTEGER(11),
@@ -13,7 +13,7 @@ let ProjectMaterial = global.sequelize.define(
     materialId: Sequelize.INTEGER(11),
     projectId: Sequelize.INTEGER(11)
   },
-  { tableName: 'projectMaterial' }
+  { sequelize, tableName: 'projectMaterial' }
 );
 
 module.exports = ProjectMaterial;

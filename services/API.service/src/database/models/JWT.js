@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-let JWT = global.sequelize.define(
-  'JWT',
+class JWT extends Sequelize.Model {}
+JWT.init(
   {
     id: {
       type: Sequelize.INTEGER(11),
@@ -25,7 +25,7 @@ let JWT = global.sequelize.define(
       defaultValue: true
     }
   },
-  { tableName: 'JWT' }
+  { sequelize, tableName: 'JWT' }
 );
 
 module.exports = JWT;
