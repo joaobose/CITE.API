@@ -1,5 +1,6 @@
 {
   "services": [
-    { "service": "api.service", "port": 3110, "name": "Api service" }
+    { "service": "api.service", "port": 3110, "name": "Api service" },
+    { "service": "gateway.service", "port": 3111, "name": "Gateway service" }
   ]
 }

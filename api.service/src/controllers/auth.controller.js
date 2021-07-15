@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const BCRYPT_SALT_ROUNDS = 11;
+const jwt = require('jsonwebtoken');
 
 const BaseController = require('fun.framework/classes/src/BaseController');
 const Logger = require('fun.framework/classes/Logger');
@@ -9,6 +9,8 @@ const UserRepository = require('../repositories/user.repository');
 const JWTRepository = require('../repositories/jwt.repository');
 const UserTransform = require('../transforms/user.transform');
 
+const JWTFun = require('fun.framework/functions/general/JWT.fun');
+const JWTErrors = require('fun.framework/classes/src/errors/JWT');
 const Errors = require('../errors');
 
 const userRepository = new UserRepository();
@@ -39,6 +41,27 @@ class AuthController extends BaseController {
 
     //---------------------- sending response
     this.response(res).JSONAPI.data(user, this.transforms.user.item);
+  }
+
+  async checkToken(req, res, validated) {
+    try {
+      //---------------------- decoding token
+      let decoded = jwt.decode(validated.token);
+      if (!decoded) fun.throw(req, res, new JWTErrors.BadJWTError(token));
+
+      //---------------------- validating token
+      await JWTFun.http.verifyUserToken(
+        req,
+        res,
+        { token: validated.token, decoded: decoded },
+        userRepository.validJWT
+      );
+
+      //---------------------- sending response
+      this.response(res).express.send();
+    } catch {
+      fun.throw(req, res, new JWTErrors.BadJWTError(token));
+    }
   }
 }
 
