@@ -31,7 +31,7 @@ const wifiDeviceRouter = require('./src/routes/wifi-device.routes');
 app.use('/wifiDevices', wifiDeviceRouter);
 
 //------------------------- docs ---------------------------//
-app.use('/', express.static(`${__dirname}/src/docs`));
+app.use('/docs', express.static(`${__dirname}/src/docs`));
 
 //------------------------ public --------------------------//
 app.use('/public/', express.static(`${__dirname}/src/public`));

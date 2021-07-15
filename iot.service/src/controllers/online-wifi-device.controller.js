@@ -31,6 +31,7 @@ class OnlineWifiDeviceController extends BaseController {
    * @apiDescription Get all the wifi devices that are currently connected to the lab's wifi network that belong to a registered lab's member
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.
+   * @apiHeader {Header} x-gateway-secret The secret attached at the Gateway API
    *
    * @apiSuccess {Array} data Returns an array of connected devices
    *

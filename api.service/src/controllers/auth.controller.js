@@ -25,6 +25,18 @@ class AuthController extends BaseController {
     };
   }
 
+  /**
+   * @api {post} /auth/login login
+   * @apiName login
+   * @apiGroup Auth
+   * @apiVersion 1.0.0
+   * @apiDescription Login
+   *
+   * @apiParam {String} email Email of the user
+   * @apiParam {String} password Password of the user
+   *
+   * @apiSuccess {Object} data The the data of the user
+   */
   async login(req, res, validated) {
     //---------------------- getting user data
     let user = await userRepository.getByEmail(validated.email);
@@ -43,6 +55,14 @@ class AuthController extends BaseController {
     this.response(res).JSONAPI.data(user, this.transforms.user.item);
   }
 
+  /**
+   * @api {post} /token/:token checkToken
+   * @apiName checkToken
+   * @apiGroup Auth
+   * @apiVersion 1.0.0
+   * @apiDescription Check if a token exists and it is valid
+   *
+   */
   async checkToken(req, res, validated) {
     try {
       //---------------------- decoding token

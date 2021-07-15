@@ -44,6 +44,13 @@ define({ "api": [
             "optional": false,
             "field": "Authorization",
             "description": "<p>JWT Bearer security token.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "Header",
+            "optional": false,
+            "field": "x-gateway-secret",
+            "description": "<p>The secret attached at the Gateway API</p>"
           }
         ]
       }

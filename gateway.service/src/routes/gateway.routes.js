@@ -9,6 +9,10 @@ const fun = require('fun.framework/functions/src/routes/routes.fun')(
 
 // ---------------- Public routes
 fun.group([])([
+  // ---------------- IoT service
+  fun.get('/iot.service/docs/*', 'gateway'),
+  fun.get('/iot.service/public/*', 'gateway'),
+
   // ---------------- API service
   fun.post('/api.service/auth/login/', 'gateway'),
   fun.get('/api.service/docs/*', 'gateway'),

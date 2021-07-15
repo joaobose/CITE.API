@@ -18,6 +18,19 @@ class WifiDeviceController extends BaseController {
     };
   }
 
+  /**
+   * @api {get} /wifiDevices/ getAllWifiDevices
+   * @apiName getAllWifiDevices
+   * @apiGroup WifiDevice
+   * @apiVersion 1.0.0
+   * @apiDescription Get all wifiDevices
+   *
+   * @apiHeader {Header} Authorization JWT Bearer security token.
+   * @apiHeader {Header} x-gateway-secret The secret attached at the Gateway API
+   *
+   * @apiSuccess {Array} data The array of wifiDevices
+   *
+   */
   async index(req, res, validated) {
     //---------------------- getting wifi-devices data
     let wifiDevices = await wifiDeviceRepository.all();
