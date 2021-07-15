@@ -6,7 +6,15 @@ module.exports = {
       {
         description: 'Joao MBP',
         ownerId: 1,
-        MAC: '71-80-EC-B0-D1-5E',
+        MAC: '8C-85-90-38-79-65',
+        enabled: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        description: 'Joao Samsung A50',
+        ownerId: 1,
+        MAC: '62-F2-E6-E6-AD-59',
         enabled: true,
         createdAt: new Date(),
         updatedAt: new Date()

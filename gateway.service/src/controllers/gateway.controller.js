@@ -33,7 +33,7 @@ class GatewayController extends BaseController {
     req.headers['x-gateway-secret'] = gatewayConfig.authSecret;
 
     // ----------- Redirect
-    if (redirectUrl)
+    if (gatewayConfig[microService] && redirectUrl)
       proxy.web(req, res, {
         target: redirectUrl,
         changeOrigin: true,
