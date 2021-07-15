@@ -2,7 +2,7 @@ const joi = require('joi');
 const JWTFun = require('fun.framework/functions/general/JWT.fun');
 const BaseRule = require('fun.framework/classes/src/BaseRule');
 
-const UserRepository = require('../../../database/repositories/user.repository');
+const UserRepository = require('../../../repositories/user.repository');
 const userRepository = new UserRepository();
 
 class JWTRule extends BaseRule {

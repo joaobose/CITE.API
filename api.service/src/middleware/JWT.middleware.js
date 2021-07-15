@@ -3,7 +3,7 @@ const JWTFun = require('fun.framework/functions/general/JWT.fun');
 const Logger = require('fun.framework/classes/Logger');
 const logger = new Logger();
 
-const UserRepository = require('../database/repositories/user.repository');
+const UserRepository = require('../repositories/user.repository');
 const userRepository = new UserRepository();
 
 const Errors = require('../errors');

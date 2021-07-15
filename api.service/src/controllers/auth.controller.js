@@ -5,8 +5,8 @@ const BaseController = require('fun.framework/classes/src/BaseController');
 const Logger = require('fun.framework/classes/Logger');
 const logger = new Logger();
 
-const UserRepository = require('../database/repositories/user.repository');
-const JWTRepository = require('../database/repositories/jwt.repository');
+const UserRepository = require('../repositories/user.repository');
+const JWTRepository = require('../repositories/jwt.repository');
 const UserTransform = require('../transforms/user.transform');
 
 const Errors = require('../errors');

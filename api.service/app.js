@@ -24,15 +24,15 @@ require('./src/database/connection');
 
 //------------------------ routes --------------------------//
 const authRouter = require('./src/routes/auth.routes');
-app.use('/auth', authRouter);
+app.use('/api.service/auth', authRouter);
 const userRouter = require('./src/routes/user.routes');
-app.use('/user', userRouter);
+app.use('/api.service/user', userRouter);
 
 //------------------------- docs ---------------------------//
-app.use('/', express.static(`${__dirname}/docs`));
+app.use('/api.service/', express.static(`${__dirname}/src/docs`));
 
 //------------------------ public --------------------------//
-app.use('/public/', express.static(`${__dirname}/public`));
+app.use('/api.service/public/', express.static(`${__dirname}/src/public`));
 
 //------------------------ socket --------------------------//
 const io = require('socket.io')(server);
@@ -49,4 +49,4 @@ if (args.listen) appScheduler.start();
 fun.start(server, args.name, args.port, logger, args.listen);
 
 //-------------------- testing export ----------------------//
-module.exports.app = app;
+module.exports = app;

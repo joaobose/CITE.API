@@ -6,7 +6,7 @@ const BaseController = require('fun.framework/classes/src/BaseController');
 const Logger = require('fun.framework/classes/Logger');
 const logger = new Logger();
 
-const UserRepository = require('../database/repositories/user.repository');
+const UserRepository = require('../repositories/user.repository');
 const UserTransform = require('../transforms/user.transform');
 const RoleTransform = require('../transforms/role.transform');
 const ProjectTransform = require('../transforms/project.transform');
