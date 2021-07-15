@@ -2,37 +2,37 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('project_material', [
+    return queryInterface.bulkInsert('projectMaterial', [
       // SHANK
       {
-        material_id: 1, // Arduino
-        project_id: 1,
+        materialId: 1, // Arduino
+        projectId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        material_id: 2, // R10K
-        project_id: 1,
+        materialId: 2, // R10K
+        projectId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
 
       // SUMO
       {
-        material_id: 1, // Arduino
-        project_id: 2,
+        materialId: 1, // Arduino
+        projectId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        material_id: 3, // HS2501
-        project_id: 2,
+        materialId: 3, // HS2501
+        projectId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        material_id: 4, // mc9s08qe128
-        project_id: 2,
+        materialId: 4, // mc9s08qe128
+        projectId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -40,6 +40,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('project_material', null, {});
+    return queryInterface.bulkDelete('projectMaterial', null, {});
   }
 };

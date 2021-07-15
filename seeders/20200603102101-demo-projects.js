@@ -6,7 +6,7 @@ module.exports = {
       {
         name: 'Shank',
         description: 'Maze solver robot',
-        manager_id: 1,
+        managerId: 1,
         startedAt: new Date('2017-11-11'),
         trelloBoard: null,
         driveFolder: null,
@@ -17,7 +17,7 @@ module.exports = {
       {
         name: 'Sumo pontiff',
         description: 'Sumo battle robot',
-        manager_id: 3,
+        managerId: 3,
         startedAt: new Date('2019-01-21'),
         trelloBoard: null,
         driveFolder: null,

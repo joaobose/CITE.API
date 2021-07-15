@@ -17,7 +17,7 @@ class UserStoreValidator extends BaseValidator {
       name: joi.string().required(),
       lastname: joi.string().required(),
       description: joi.string().required(),
-      role_id: joi.number().integer().required()
+      roleId: joi.number().integer().required()
     });
 
     const params = {
@@ -26,7 +26,7 @@ class UserStoreValidator extends BaseValidator {
       name: req.fields.name,
       lastname: req.fields.lastname,
       description: req.fields.description,
-      role_id: req.fields.role_id
+      roleId: req.fields.roleId
     };
 
     await joi

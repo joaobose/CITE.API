@@ -10,10 +10,10 @@ let ProjectMaterial = global.sequelize.define(
       primaryKey: true
     },
 
-    material_id: Sequelize.INTEGER(11),
-    project_id: Sequelize.INTEGER(11)
+    materialId: Sequelize.INTEGER(11),
+    projectId: Sequelize.INTEGER(11)
   },
-  { tableName: 'project_material' }
+  { tableName: 'projectMaterial' }
 );
 
 module.exports = ProjectMaterial;

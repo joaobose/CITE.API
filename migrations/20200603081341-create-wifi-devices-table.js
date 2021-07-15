@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('JWT', {
+    return queryInterface.createTable('WIFIDevices', {
       id: {
         type: Sequelize.INTEGER(11),
         allowNull: false,
@@ -10,17 +10,28 @@ module.exports = {
         primaryKey: true
       },
 
-      owner_id: {
+      description: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: true
+        }
+      },
+
+      MAC: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: true
+        }
+      },
+
+      ownerId: {
         type: Sequelize.INTEGER(11),
         allowNull: false
       },
 
-      secret: {
-        allowNull: false,
-        type: Sequelize.STRING(255)
-      },
-
-      valid: {
+      enabled: {
         type: Sequelize.BOOLEAN,
         defaultValue: true
       },
@@ -31,6 +42,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('JWT');
+    return queryInterface.dropTable('WIFIDevices');
   }
 };

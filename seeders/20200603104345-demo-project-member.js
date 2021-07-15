@@ -2,49 +2,49 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('project_member', [
+    return queryInterface.bulkInsert('projectMember', [
       // SHANk
       {
-        member_id: 1, // Joao
-        project_id: 1,
+        memberId: 1, // Joao
+        projectId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        member_id: 3, // Noya
-        project_id: 1,
+        memberId: 3, // Noya
+        projectId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        member_id: 6, // Bose Diaz
-        project_id: 1,
+        memberId: 6, // Bose Diaz
+        projectId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
 
       // SUMO
       {
-        member_id: 1, // Joao
-        project_id: 2,
+        memberId: 1, // Joao
+        projectId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        member_id: 2, // Ricardo
-        project_id: 2,
+        memberId: 2, // Ricardo
+        projectId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        member_id: 3, // Noya - manager
-        project_id: 2,
+        memberId: 3, // Noya - manager
+        projectId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        member_id: 7, // Elon musk
-        project_id: 2,
+        memberId: 7, // Elon musk
+        projectId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -52,6 +52,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('project_member', null, {});
+    return queryInterface.bulkDelete('projectMember', null, {});
   }
 };

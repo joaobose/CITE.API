@@ -50,12 +50,12 @@ module.exports = {
 
       photo: Sequelize.STRING(255),
 
-      role_id: {
+      roleId: {
         type: Sequelize.INTEGER(11),
         allowNull: false
       },
 
-      tutor_id: Sequelize.INTEGER(11),
+      tutorId: Sequelize.INTEGER(11),
 
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE

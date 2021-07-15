@@ -10,7 +10,7 @@ let JWT = global.sequelize.define(
       primaryKey: true
     },
 
-    owner_id: {
+    ownerId: {
       type: Sequelize.INTEGER(11),
       allowNull: false
     },

@@ -16,7 +16,7 @@ class UserTransform extends BaseTransform {
       },
       relationships: {
         role: {
-          data: { id: user.role_id, type: 'role' },
+          data: { id: user.roleId, type: 'role' },
           links: { related: '/user/' + user.id + '/role' }
         }
       },

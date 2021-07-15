@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('project_member', {
+    return queryInterface.createTable('projectMaterial', {
       id: {
         type: Sequelize.INTEGER(11),
         allowNull: false,
@@ -10,8 +10,8 @@ module.exports = {
         primaryKey: true
       },
 
-      member_id: Sequelize.INTEGER(11),
-      project_id: Sequelize.INTEGER(11),
+      materialId: Sequelize.INTEGER(11),
+      projectId: Sequelize.INTEGER(11),
 
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE
@@ -19,6 +19,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('project_member');
+    return queryInterface.dropTable('projectMaterial');
   }
 };

@@ -54,12 +54,12 @@ let User = global.sequelize.define(
 
     photo: Sequelize.STRING(255),
 
-    role_id: {
+    roleId: {
       type: Sequelize.INTEGER(11),
       allowNull: false
     },
 
-    tutor_id: Sequelize.INTEGER(11)
+    tutorId: Sequelize.INTEGER(11)
   },
   { tableName: 'users' }
 );
@@ -67,41 +67,41 @@ let User = global.sequelize.define(
 // --------------------- Relationships ---------------------- //
 
 // ----------------------- JWT (1:m) ------------------------ //
-User.hasMany(JWT, { as: 'JWT', foreignKey: 'owner_id' });
-JWT.belongsTo(User, { as: 'owner', foreignKey: 'owner_id' });
+User.hasMany(JWT, { as: 'JWT', foreignKey: 'ownerId' });
+JWT.belongsTo(User, { as: 'owner', foreignKey: 'ownerId' });
 
 // -------------------- WifiDevice (1:m) --------------------- //
-User.hasMany(WifiDevice, { as: 'wifiDevices', foreignKey: 'owner_id' });
-WifiDevice.belongsTo(User, { as: 'owner', foreignKey: 'owner_id' });
+User.hasMany(WifiDevice, { as: 'wifiDevices', foreignKey: 'ownerId' });
+WifiDevice.belongsTo(User, { as: 'owner', foreignKey: 'ownerId' });
 
 // ------------------ Project manager (1:m) ------------------ //
-User.hasMany(Project, { as: 'managedProjects', foreignKey: 'manager_id' });
-Project.belongsTo(User, { as: 'manager', foreignKey: 'manager_id' });
+User.hasMany(Project, { as: 'managedProjects', foreignKey: 'managerId' });
+Project.belongsTo(User, { as: 'manager', foreignKey: 'managerId' });
 
 // ------------------------ Role (m:1) ----------------------- //
-Role.hasMany(User, { as: 'users', foreignKey: 'role_id' });
-User.belongsTo(Role, { as: 'role', foreignKey: 'role_id' });
+Role.hasMany(User, { as: 'users', foreignKey: 'roleId' });
+User.belongsTo(Role, { as: 'role', foreignKey: 'roleId' });
 
 // ----------------------- Tutor (m:1) ----------------------- //
-User.hasMany(User, { as: 'applicants', foreignKey: 'tutor_id' });
-User.belongsTo(User, { as: 'tutor', foreignKey: 'tutor_id' });
+User.hasMany(User, { as: 'applicants', foreignKey: 'tutorId' });
+User.belongsTo(User, { as: 'tutor', foreignKey: 'tutorId' });
 
 // ------------------- Project Member (n:m) ------------------ //
 
 // projects
 User.belongsToMany(Project, {
   as: 'projects',
-  through: 'project_member',
-  foreignKey: 'member_id',
-  otherKey: 'project_id'
+  through: 'projectMember',
+  foreignKey: 'memberId',
+  otherKey: 'projectId'
 });
 
 // members
 Project.belongsToMany(User, {
   as: 'members',
-  through: 'project_member',
-  foreignKey: 'project_id',
-  otherKey: 'member_id'
+  through: 'projectMember',
+  foreignKey: 'projectId',
+  otherKey: 'memberId'
 });
 
 module.exports = User;

@@ -11,7 +11,7 @@ class JWTRepository extends BaseRepository {
   }
 
   async removeAllTokens(user) {
-    await this.model.destroy({ where: { owner_id: user.id } });
+    await this.model.destroy({ where: { ownerId: user.id } });
   }
 
   async generateToken(user) {
@@ -21,7 +21,7 @@ class JWTRepository extends BaseRepository {
       expiresIn: '576h'
     });
 
-    await this.create({ owner_id: user.id, secret: secret });
+    await this.create({ ownerId: user.id, secret: secret });
     return token;
   }
 }

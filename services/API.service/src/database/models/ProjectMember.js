@@ -10,10 +10,10 @@ let ProjectMember = global.sequelize.define(
       primaryKey: true
     },
 
-    member_id: Sequelize.INTEGER(11),
-    project_id: Sequelize.INTEGER(11)
+    memberId: Sequelize.INTEGER(11),
+    projectId: Sequelize.INTEGER(11)
   },
-  { tableName: 'project_member' }
+  { tableName: 'projectMember' }
 );
 
 module.exports = ProjectMember;

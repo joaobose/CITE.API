@@ -27,7 +27,7 @@ let Project = global.sequelize.define(
       }
     },
 
-    manager_id: {
+    managerId: {
       type: Sequelize.INTEGER(11),
       allowNull: false
     },
@@ -50,17 +50,17 @@ let Project = global.sequelize.define(
 // usedBy
 Material.belongsToMany(Project, {
   as: 'usedBy',
-  through: 'project_material',
-  foreignKey: 'material_id',
-  otherKey: 'project_id'
+  through: 'projectMaterial',
+  foreignKey: 'materialId',
+  otherKey: 'projectId'
 });
 
 // materials
 Project.belongsToMany(Material, {
   as: 'materials',
-  through: 'project_material',
-  foreignKey: 'project_id',
-  otherKey: 'material_id'
+  through: 'projectMaterial',
+  foreignKey: 'projectId',
+  otherKey: 'materialId'
 });
 
 module.exports = Project;

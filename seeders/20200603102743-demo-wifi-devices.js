@@ -2,10 +2,10 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('WIFI_devices', [
+    return queryInterface.bulkInsert('WIFIDevices', [
       {
         description: 'Joao MBP',
-        owner_id: 1,
+        ownerId: 1,
         MAC: '71-80-EC-B0-D1-5E',
         enabled: true,
         createdAt: new Date(),
@@ -13,7 +13,7 @@ module.exports = {
       },
       {
         description: 'MSI GS66',
-        owner_id: 5,
+        ownerId: 5,
         MAC: '1F-7E-DC-A9-EE-5F',
         enabled: true,
         createdAt: new Date(),
@@ -21,7 +21,7 @@ module.exports = {
       },
       {
         description: 'THpi PS4',
-        owner_id: 1,
+        ownerId: 1,
         MAC: '8F-7A-EF-A9-CC-5F',
         enabled: true,
         createdAt: new Date(),
@@ -29,7 +29,7 @@ module.exports = {
       },
       {
         description: 'MSI GS66 but slower and fat',
-        owner_id: 2,
+        ownerId: 2,
         MAC: '1A-22-BB-9F-FF-00',
         enabled: true,
         createdAt: new Date(),
@@ -37,7 +37,7 @@ module.exports = {
       },
       {
         description: 'Joao 200$ laptop',
-        owner_id: 1,
+        ownerId: 1,
         MAC: '17-08-CE-00-EE-21',
         enabled: false,
         createdAt: new Date(),
@@ -47,6 +47,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('WIFI_devices', null, {});
+    return queryInterface.bulkDelete('WIFIDevices', null, {});
   }
 };
