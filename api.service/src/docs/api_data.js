@@ -33,7 +33,7 @@ define({ "api": [
     "title": "checkToken",
     "name": "checkToken",
     "group": "Auth",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Check if a token exists and it is valid</p>",
     "filename": "src/controllers/auth.controller.js",
     "groupTitle": "Auth"
@@ -44,7 +44,7 @@ define({ "api": [
     "title": "login",
     "name": "login",
     "group": "Auth",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Login</p>",
     "parameter": {
       "fields": {
@@ -88,7 +88,7 @@ define({ "api": [
     "title": "broadcastAnnouncement",
     "name": "broadcastAnnouncement",
     "group": "User",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Broadcast an anoucement to a given channel. Only users with the board role can call this method.</p>",
     "header": {
       "fields": {
@@ -139,7 +139,7 @@ define({ "api": [
     "title": "createUser",
     "name": "createUser",
     "group": "User",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Creates a user</p>",
     "header": {
       "fields": {
@@ -231,7 +231,7 @@ define({ "api": [
     "title": "deleteUser",
     "name": "deleteUser",
     "group": "User",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Deletes a user.</p>",
     "header": {
       "fields": {
@@ -275,7 +275,7 @@ define({ "api": [
     "title": "getAllUsers",
     "name": "getAllUsers",
     "group": "User",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Get all users</p>",
     "header": {
       "fields": {
@@ -319,7 +319,7 @@ define({ "api": [
     "title": "getRole",
     "name": "getRole",
     "group": "User",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Gets an user's role</p>",
     "header": {
       "fields": {
@@ -363,7 +363,7 @@ define({ "api": [
     "title": "getUser",
     "name": "getUser",
     "group": "User",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Get a user</p>",
     "header": {
       "fields": {
@@ -407,7 +407,7 @@ define({ "api": [
     "title": "getUserWith",
     "name": "getUserWith",
     "group": "User",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Gets a user with the requested relationships</p>",
     "header": {
       "fields": {
@@ -451,7 +451,7 @@ define({ "api": [
     "title": "updateUser",
     "name": "updateUser",
     "group": "User",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Updates a user</p>",
     "header": {
       "fields": {
@@ -522,7 +522,7 @@ define({ "api": [
     "title": "getAllWifiDevices",
     "name": "getAllWifiDevices",
     "group": "WifiDevice",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "<p>Get all wifiDevices</p>",
     "header": {
       "fields": {
