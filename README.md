@@ -1,6 +1,6 @@
 # CITE.API
 
-CITE.API is a RESTful API project that uses the lastest version of `fun.framework`.
+CITE.API is a RESTful API project that uses the latest version of `fun.framework`.
 
 ## Project overview
 
