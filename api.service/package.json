@@ -1,6 +1,6 @@
 {
   "name": "cite.api.service",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "The API service of the CITE RESTFul platform",
   "main": "app.js",
   "scripts": {

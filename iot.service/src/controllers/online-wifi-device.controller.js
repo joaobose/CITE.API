@@ -27,7 +27,7 @@ class OnlineWifiDeviceController extends BaseController {
    * @api {get} /onlineWifiDevices/connected connected
    * @apiName connected
    * @apiGroup OnlineWifiDevice
-   * @apiVersion 1.0.0
+   * @apiVersion 2.0.0
    * @apiDescription Get all the wifi devices that are currently connected to the lab's wifi network that belong to a registered lab's member
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.
