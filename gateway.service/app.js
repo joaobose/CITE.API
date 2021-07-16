@@ -9,7 +9,7 @@ const fun = require('fun.framework/functions/app.fun');
 //---------------------- parse args ------------------------//
 let args = fun.parseArgs(process);
 
-//-------------------------- cors --------------------------//
+//------------------------- cors ---------------------------//
 const cors = require('cors');
 app.use(cors());
 

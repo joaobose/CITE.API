@@ -26,7 +26,7 @@ require('./src/database/connection');
 const authRouter = require('./src/routes/auth.routes');
 app.use('/auth', authRouter);
 const userRouter = require('./src/routes/user.routes');
-app.use('/user', userRouter);
+app.use('/users', userRouter);
 const wifiDeviceRouter = require('./src/routes/wifi-device.routes');
 app.use('/wifiDevices', wifiDeviceRouter);
 

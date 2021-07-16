@@ -21,14 +21,16 @@ let login = async (email, password) => {
 
 let resetDatabase = async () =>
   new Promise((resolve, reject) => {
-    exec(
-      `NODE_ENV=${env} npx sequelize db:seed:undo:all && NODE_ENV=${env} npx sequelize db:seed:all`,
-      { env: process.env },
-      (err, stdout, stderr) => {
-        if (err) reject(err);
-        else resolve();
-      }
-    );
+    const commands = [
+      `NODE_ENV=${env} sequelize db:migrate:undo:all`,
+      `NODE_ENV=${env} sequelize db:migrate`,
+      `NODE_ENV=${env} sequelize db:seed:all`
+    ];
+
+    exec(commands.join(' && '), { env: process.env }, (err) => {
+      if (err) reject(err);
+      else resolve();
+    });
   });
 
 let expectEntityMatch = async (
@@ -36,11 +38,11 @@ let expectEntityMatch = async (
   expectedId,
   expectedBody,
   schema,
-  secret
+  token
 ) => {
   let res = await request(microservice)
-    .get(`${route}`)
-    .set('x-gateway-secret', `${secret}`);
+    .get(route)
+    .set('Authorization', `Bearer ${token}`);
 
   //------------- Checking response
   expect(res.statusCode).toEqual(200);
@@ -57,10 +59,10 @@ let expectEntityMatch = async (
     expect(data.attributes[key]).toBe(expectedBody[key]);
 };
 
-let expectNotFound = async (route, secret) => {
+let expectNotFound = async (route, token) => {
   let res = await request(microservice)
-    .get(`${route}`)
-    .set('x-gateway-secret', `${secret}`);
+    .get(route)
+    .set('Authorization', `Bearer ${token}`);
 
   //------------- Checking response
   expect(res.statusCode).toEqual(404);

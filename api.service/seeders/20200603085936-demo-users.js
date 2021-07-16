@@ -6,7 +6,7 @@ module.exports = {
       {
         name: 'Joao',
         lastname: 'Joao',
-        email: 'joaobose@gmail.com',
+        email: 'joao@cite.com',
         roleId: 1,
         description: 'Even a broken clock is right twice a day!',
         photo: null,
@@ -19,7 +19,7 @@ module.exports = {
       {
         name: 'Ricardo',
         lastname: 'Silva',
-        email: 'ricardosc1997@gmail.com',
+        email: 'ricardo@cite.com',
         roleId: 1,
         description: 'Hallo!',
         photo: null,
@@ -32,7 +32,7 @@ module.exports = {
       {
         name: 'Gabriel',
         lastname: 'Noya',
-        email: 'gabrielnoya95@gmail.com',
+        email: 'gabriel@cite.com',
         roleId: 2,
         description: "there's no bad bussiness, just bad minds",
         photo: null,
@@ -45,7 +45,7 @@ module.exports = {
       {
         name: 'Leonardo',
         lastname: 'Cabrera',
-        email: 'leoclb2528@gmail.com',
+        email: 'leoclb@cite.com',
         roleId: 2,
         description: "That's your opinion, HEH!",
         photo: null,
@@ -58,7 +58,7 @@ module.exports = {
       {
         name: 'Juan Manuel',
         lastname: 'Nuñez',
-        email: 'jumanuba@gmail.com',
+        email: 'jumanuba@cite.com',
         roleId: 2,
         description: 'Pon a cargar los controles del play, coño',
         photo: null,
@@ -71,7 +71,7 @@ module.exports = {
       {
         name: 'Bose',
         lastname: 'Diaz',
-        email: 'joaodesing2301@gmail.com',
+        email: 'bose@cite.com',
         roleId: 3,
         description: "Rip and Tear, until it's done!",
         photo: null,
@@ -84,7 +84,7 @@ module.exports = {
       {
         name: 'Elon',
         lastname: 'Musk',
-        email: 'elonmusk@gmail.com',
+        email: 'elonmusk@cite.com',
         roleId: 3,
         description: 'Memelord and CEO',
         photo: null,
@@ -97,7 +97,7 @@ module.exports = {
       {
         name: 'Zion',
         lastname: 'Williamson',
-        email: 'zionm@gmail.com',
+        email: 'zionm@cite.com',
         roleId: 3,
         description: 'Dunk!',
         photo: null,
@@ -110,7 +110,7 @@ module.exports = {
       {
         name: 'Stephen',
         lastname: 'Curry',
-        email: 'stepcrr@gmail.com',
+        email: 'stepcrr@cite.com',
         roleId: 3,
         description: "I'm Steph",
         photo: null,

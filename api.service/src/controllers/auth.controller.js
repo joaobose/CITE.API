@@ -64,24 +64,20 @@ class AuthController extends BaseController {
    *
    */
   async checkToken(req, res, validated) {
-    try {
-      //---------------------- decoding token
-      let decoded = jwt.decode(validated.token);
-      if (!decoded) fun.throw(req, res, new JWTErrors.BadJWTError(token));
+    //---------------------- decoding token
+    let decoded = jwt.decode(validated.token);
+    if (!decoded) this.throw(req, res, new JWTErrors.BadJWTError(token));
 
-      //---------------------- validating token
-      await JWTFun.http.verifyUserToken(
-        req,
-        res,
-        { token: validated.token, decoded: decoded },
-        userRepository.validJWT
-      );
+    //---------------------- validating token
+    await JWTFun.http.verifyUserToken(
+      req,
+      res,
+      { token: validated.token, decoded: decoded },
+      userRepository.validJWT
+    );
 
-      //---------------------- sending response
-      this.response(res).express.send();
-    } catch {
-      fun.throw(req, res, new JWTErrors.BadJWTError(token));
-    }
+    //---------------------- sending response
+    this.response(res).express.send();
   }
 }
 
