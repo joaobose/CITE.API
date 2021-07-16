@@ -1,0 +1,26 @@
+{
+  "local": {
+    "iot.service": "http://localhost:3112",
+    "gateway.service": "http://localhost:3111",
+    "api.service": "http://localhost:3110",
+    "authSecret": "TT,]e2n~s$#D{ijAZqqUn^Lr5{7$xx|V?PS0@P]-dKM1|QB)-W}50Pb!OndpEkB"
+  },
+  "development": {
+    "iot.service": "http://localhost:3112",
+    "gateway.service": "http://localhost:3111",
+    "api.service": "http://localhost:3110",
+    "authSecret": "TT,]e2n~s$#D{ijAZqqUn^Lr5{7$xx|V?PS0@P]-dKM1|QB)-W}50Pb!OndpEkB"
+  },
+  "production": {
+    "iot.service": "http://localhost:3112",
+    "gateway.service": "http://localhost:3111",
+    "api.service": "http://localhost:3110",
+    "authSecret": "TT,]e2n~s$#D{ijAZqqUn^Lr5{7$xx|V?PS0@P]-dKM1|QB)-W}50Pb!OndpEkB"
+  },
+  "test": {
+    "iot.service": "http://localhost:3112",
+    "gateway.service": "http://localhost:3111",
+    "api.service": "http://localhost:3110",
+    "authSecret": "TT,]e2n~s$#D{ijAZqqUn^Lr5{7$xx|V?PS0@P]-dKM1|QB)-W}50Pb!OndpEkB"
+  }
+}

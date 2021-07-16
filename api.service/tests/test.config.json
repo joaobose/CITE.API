@@ -1,0 +1,7 @@
+{
+  "email": "joao@cite.com",
+  "password": "develop",
+  "loginService": "http://localhost:3111/g/api.service",
+  "loginRoute": "/auth/login",
+  "microservice": "http://localhost:3111/g/api.service"
+}

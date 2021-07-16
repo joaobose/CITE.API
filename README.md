@@ -22,13 +22,13 @@ We are using the repository pattern provided by `fun.framework` to interact with
 
 The `User` resource is completly implemented in this API. You can explore this resource to know what `fun.framework` has to offer. The rest of the resources (such as `Material` and `Project`) are yet to be implemented.
 
-We recommend you to start checking the workflow from the `User` router, you can find it at `/services/API.service/src/routes/user.routes.js`.
+We recommend you to start checking the workflow from the `User` router, you can find it at `/api.service/src/routes/user.routes.js`.
 
 ## Authentication and Auth router
 
-This API uses _JWT Bearer token authentication schema_. We created an `Auth` router so that users can login with email and password. You can find the router at `/services/API.service/src/routes/auth.routes.js`.
+This API uses _JWT Bearer token authentication schema_. We created an `Auth` router so that users can login with email and password. You can find the router at `/api.service/src/routes/auth.routes.js`.
 
-The authentication middleware is located at `/services/API.service/src/middlewares/JWT.middleware.js`.
+The authentication middleware is located at `/api.service/src/middlewares/JWT.middleware.js`.
 
 ## Broadcaster
 
@@ -61,7 +61,7 @@ class RoleRule extends BaseRule {
   constructor(validatedRole) {
     super();
     this.validatedRole = validatedRole;
-    this.name = this.validatedRole + ' role rule';
+    this.name = `${this.validatedRole} role rule`;
   }
 
   async body(data) {
@@ -80,11 +80,10 @@ class RoleRule extends BaseRule {
     let schema = JWTFun.decodeBearerScheme(body.authorization);
     let userId = JWTFun.validateUserIdentifierFromSchema(schema);
 
-    // -------------------- validate user role --------------------- //
+    //-------------------- validate user role
     let role = await userRepository.role(userId);
-    if (!role) return false;
 
-    return role.name == this.validatedRole;
+    return !!role && role.name == this.validatedRole;
   }
 
   async debug() {
@@ -277,7 +276,7 @@ grant all privileges on * . * to '<YOUR USER>'@'localhost';
 
 ```
 
-then open config/config.json and replace:
+then open `api.service/config/config.json` and replace:
 
 ```json
 {
@@ -323,7 +322,7 @@ sudo npm install mysql2 -g
 
 ### 4. Install servers dependencies
 
-Run the following commands at the repo root and within each service:
+Run the following commands within each service:
 
 ```
 npm install
@@ -331,7 +330,7 @@ npm install
 
 ### 5. Migrate and seed the database
 
-Run the following at the repo root:
+Run the following within each service root:
 
 ```
 npm run dev-db:reset
@@ -342,9 +341,13 @@ npm run dev-db:reset
 Run the following at the repo root:
 
 ```
-npm start
+node start
 ```
 
 ## Runing tests
 
-Tests for this project are comming soon, stay tuned!
+Run the following within each service root:
+
+```
+npm run test
+```
