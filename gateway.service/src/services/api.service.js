@@ -1,25 +1,19 @@
-const BaseService = require('./base.service');
+const BaseService = require('fun.framework/classes/src/BaseService');
 const env = process.env.NODE_ENV || 'development';
 const config = require('../../config/services.config.json')[env];
 
 class APIService extends BaseService {
-  url = config['api.service'];
-  authHeader = config.authSecret;
-
-  constructor() {
-    super();
+  constructor({ req, res } = {}) {
+    super('api.service', config['api.service'], { req, res });
   }
 
   async checkJWT(token) {
-    const res = await this.get(`${this.url}/auth/token/${token}`, {
-      headers: this.getHeaders()
-    });
-    return res.data.data;
+    return (await this.get(`/auth/token/${token}`)).data.data;
   }
 
-  getHeaders() {
+  async getHeaders() {
     return {
-      'x-gateway-secret': this.authHeader
+      'x-gateway-secret': config.authSecret
     };
   }
 }

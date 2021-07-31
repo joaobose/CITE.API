@@ -7,12 +7,7 @@ const logger = new Logger();
 
 const OnlineWifiDeviceTransform = require('../transforms/online-wifi-device.transform');
 
-const Errors = require('../errors');
-
 const APIService = require('../services/api.service');
-const apiService = new APIService();
-
-const BaseError = require('fun.framework/classes/src/BaseError');
 
 class OnlineWifiDeviceController extends BaseController {
   constructor() {
@@ -42,13 +37,8 @@ class OnlineWifiDeviceController extends BaseController {
     let macs = devices.map((d) => d.mac.toUpperCase().replace(/:/g, '-'));
 
     //---------------------- getting registered devices
-    let registeredWifiDevices = await apiService
-      .wifiDevices()
-      .catch((reason) => {
-        delete req.headers['x-gateway-secret'];
-        let [error] = reason.response.data.errors;
-        this.throw(req, res, new BaseError(error));
-      });
+    const apiService = new APIService({ req, res });
+    let registeredWifiDevices = await apiService.wifiDevices();
 
     //---------------------- filtering to get connected devices
     let onlineWifiDevices = registeredWifiDevices.filter(
