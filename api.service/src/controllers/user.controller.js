@@ -26,6 +26,8 @@ class UserController extends BaseController {
     };
 
     this.broadcaster = new Broadcaster();
+
+    this.pageSize = 2;
   }
 
   /**
@@ -42,11 +44,14 @@ class UserController extends BaseController {
    *
    */
   async index(req, res, validated) {
-    //---------------------- getting users data
-    let users = await userRepository.all();
+    //---------------------- getting paginated users data
+    let users = await userRepository.paginate(this.pageSize, validated.page);
 
     //---------------------- sending response
-    this.response(res).JSONAPI.data(users, this.transforms.user.collection);
+    this.response(res).JSONAPI.pagination(
+      users,
+      this.transforms.user.collection
+    );
   }
 
   /**
