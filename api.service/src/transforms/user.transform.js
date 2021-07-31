@@ -4,7 +4,7 @@ const ProjectTransform = require('./project.transform');
 
 class UserTransform extends BaseTransform {
   constructor() {
-    super();
+    super({ async: true });
     this.transforms = {
       role: new RoleTransform(),
       project: new ProjectTransform(),
@@ -12,7 +12,7 @@ class UserTransform extends BaseTransform {
     };
   }
 
-  morph(user) {
+  async morph(user) {
     return {
       id: user.id,
       type: 'user',
@@ -34,7 +34,10 @@ class UserTransform extends BaseTransform {
               }
         },
         ...(user.projects && {
-          projects: { data: this.transforms.project.collection(user.projects) }
+          projects: {
+            // await here IS NOT neccessary but it does not break non-async transforms
+            data: await this.transforms.project.collection(user.projects)
+          }
         }),
         ...(user.managedProjects && {
           managedProjects: {
@@ -43,7 +46,8 @@ class UserTransform extends BaseTransform {
         }),
         ...(user.applicants && {
           applicants: {
-            data: this.transforms.user.collection(user.applicants)
+            // await here IS neccessary since UserTransform is an async transform
+            data: await this.transforms.user.collection(user.applicants)
           }
         })
       }
