@@ -1,6 +1,6 @@
 {
   "name": "gateway.service",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "The microservice gatewat service of the CITE RESTful platform",
   "main": "app.js",
   "scripts": {
@@ -36,7 +36,7 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
-    "fun.framework": "^0.3.3",
+    "fun.framework": "^0.4.0",
     "http-proxy": "^1.18.1",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",

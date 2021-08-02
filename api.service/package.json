@@ -1,6 +1,6 @@
 {
   "name": "cite.api.service",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "The API service of the CITE RESTFul platform",
   "main": "app.js",
   "scripts": {
@@ -41,7 +41,7 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
-    "fun.framework": "~0.3.3",
+    "fun.framework": "^0.4.0",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.1.0",

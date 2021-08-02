@@ -29,7 +29,7 @@ class AuthController extends BaseController {
    * @api {post} /auth/login login
    * @apiName login
    * @apiGroup Auth
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Login
    *
    * @apiParam {String} email Email of the user
@@ -59,7 +59,7 @@ class AuthController extends BaseController {
    * @api {post} /token/:token checkToken
    * @apiName checkToken
    * @apiGroup Auth
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Check if a token exists and it is valid
    *
    */
