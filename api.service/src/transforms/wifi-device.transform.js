@@ -3,13 +3,13 @@ const UserTransform = require('./user.transform');
 
 class WifiDeviceTransform extends BaseTransform {
   constructor() {
-    super();
+    super({ async: true });
     this.transforms = {
       user: new UserTransform()
     };
   }
 
-  morph(wifiDevice) {
+  async morph(wifiDevice) {
     return {
       id: wifiDevice.id,
       type: 'wifiDevice',
@@ -20,7 +20,7 @@ class WifiDeviceTransform extends BaseTransform {
       },
       relationships: {
         ...(wifiDevice.owner && {
-          owner: { data: this.transforms.user.item(wifiDevice.owner) }
+          owner: { data: await this.transforms.user.item(wifiDevice.owner) }
         })
       }
     };

@@ -33,7 +33,7 @@ define({ "api": [
     "title": "connected",
     "name": "connected",
     "group": "OnlineWifiDevice",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "description": "<p>Get all the wifi devices that are currently connected to the lab's wifi network that belong to a registered lab's member</p>",
     "header": {
       "fields": {

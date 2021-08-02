@@ -11,13 +11,15 @@ const fun = require('fun.framework/functions/src/routes/routes.fun')(
 );
 
 fun.group([SecretMiddleware])([
-  fun.rest(Validators.RestValidators),
-  fun.get('/:id/role', 'role', new Validators.RestValidators.show()),
-  fun.get('/:id/with', 'showWith', new Validators.showWith()),
+  fun.rest(Validators.RestValidators, ['index', 'show']),
 
   fun.subgroup([RoleMiddleware('board')])([
+    fun.rest(Validators.RestValidators, ['destroy', 'store', 'update']),
     fun.post('/announcement', 'announcement', new Validators.announcement())
-  ])
+  ]),
+
+  fun.get('/:id/role', 'role', new Validators.RestValidators.show()),
+  fun.get('/:id/with', 'showWith', new Validators.showWith())
 ]);
 
 module.exports = router;

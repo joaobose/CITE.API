@@ -7,24 +7,24 @@ const fun = require('fun.framework/functions/src/routes/routes.fun')(
   new Controller()
 );
 
-// ---------------- Public routes
+//---------------- Available services
+const APIService = require('../services/api.service');
+const IOTService = require('../services/iot.service');
+
+const apiService = new APIService();
+const iotService = new IOTService();
+
+const services = [apiService, iotService];
+const gateway = fun.gateway();
+
+//---------------- Public routes
 fun.group([])([
-  // ---------------- IoT service
-  fun.get('/iot.service/docs/*', 'gateway'),
-  fun.get('/iot.service/public/*', 'gateway'),
-
-  // ---------------- API service
-  fun.post('/api.service/auth/login/', 'gateway'),
-  fun.get('/api.service/docs/*', 'gateway'),
-  fun.get('/api.service/public/*', 'gateway')
+  fun.get('/public/devices/connected', 'publicConnected'),
+  gateway(services)(['/docs/*', '/public/*'])(['get']),
+  gateway([apiService])(['/auth/login'])(['post'])
 ]);
 
-// ---------------- Private routes
-fun.group([JWTMiddleware])([
-  fun.post('/*', 'gateway'),
-  fun.get('/*', 'gateway'),
-  fun.put('/*', 'gateway'),
-  fun.delete('/*', 'gateway')
-]);
+//---------------- Private routes
+gateway(services)(['/*'])(fun.methods)([JWTMiddleware]);
 
 module.exports = router;

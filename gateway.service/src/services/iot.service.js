@@ -2,13 +2,13 @@ const BaseService = require('fun.framework/classes/src/BaseService');
 const env = process.env.NODE_ENV || 'development';
 const config = require('../../config/services.config.json')[env];
 
-class APIService extends BaseService {
+class IOTService extends BaseService {
   constructor({ req, res } = {}) {
-    super('api.service', config['api.service'], { req, res });
+    super('iot.service', config['iot.service'], { req, res });
   }
 
-  async wifiDevices() {
-    return (await this.get('/wifiDevices')).data.data;
+  async connected() {
+    return (await this.get(`/onlineWifiDevices/connected`)).data.data;
   }
 
   async getHeaders() {
@@ -18,4 +18,4 @@ class APIService extends BaseService {
   }
 }
 
-module.exports = APIService;
+module.exports = IOTService;

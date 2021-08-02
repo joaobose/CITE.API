@@ -22,7 +22,7 @@ class WifiDeviceController extends BaseController {
    * @api {get} /wifiDevices/ getAllWifiDevices
    * @apiName getAllWifiDevices
    * @apiGroup WifiDevice
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Get all wifiDevices
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.

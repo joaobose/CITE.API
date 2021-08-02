@@ -26,13 +26,15 @@ class UserController extends BaseController {
     };
 
     this.broadcaster = new Broadcaster();
+
+    this.pageSize = 2;
   }
 
   /**
    * @api {get} /users/ getAllUsers
    * @apiName getAllUsers
    * @apiGroup User
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Get all users
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.
@@ -42,18 +44,21 @@ class UserController extends BaseController {
    *
    */
   async index(req, res, validated) {
-    //---------------------- getting users data
-    let users = await userRepository.all();
+    //---------------------- getting paginated users data
+    let users = await userRepository.paginate(this.pageSize, validated.page);
 
     //---------------------- sending response
-    this.response(res).JSONAPI.data(users, this.transforms.user.collection);
+    this.response(res).JSONAPI.pagination(
+      users,
+      this.transforms.user.collection
+    );
   }
 
   /**
    * @api {get} /users/:id getUser
    * @apiName getUser
    * @apiGroup User
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Get a user
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.
@@ -75,7 +80,7 @@ class UserController extends BaseController {
    * @api {post} /users createUser
    * @apiName createUser
    * @apiGroup User
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Creates a user
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.
@@ -107,7 +112,7 @@ class UserController extends BaseController {
    * @api {put} /users/:id updateUser
    * @apiName updateUser
    * @apiGroup User
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Updates a user
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.
@@ -136,7 +141,7 @@ class UserController extends BaseController {
    * @api {delete} /users/:id deleteUser
    * @apiName deleteUser
    * @apiGroup User
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Deletes a user.
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.
@@ -159,7 +164,7 @@ class UserController extends BaseController {
    * @api {get} /users/:id/role getRole
    * @apiName getRole
    * @apiGroup User
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Gets an user's role
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.
@@ -180,7 +185,7 @@ class UserController extends BaseController {
    * @api {get} /users/:id/with?relationships=projects,managedProjects,role,applicants getUserWith
    * @apiName getUserWith
    * @apiGroup User
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Gets a user with the requested relationships
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.
@@ -202,7 +207,7 @@ class UserController extends BaseController {
    * @api {post} /users/announcement broadcastAnnouncement
    * @apiName broadcastAnnouncement
    * @apiGroup User
-   * @apiVersion 2.0.0
+   * @apiVersion 3.0.0
    * @apiDescription Broadcast an anoucement to a given channel. Only users with the board role can call this method.
    *
    * @apiHeader {Header} Authorization JWT Bearer security token.

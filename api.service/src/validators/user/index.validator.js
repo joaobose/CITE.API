@@ -11,7 +11,19 @@ class UserIndexValidator extends BaseValidator {
   }
 
   async validate(req, res) {
-    return {};
+    const validator = joi.object().keys({
+      page: joi.number().integer()
+    });
+
+    const params = {
+      page: req.query.page
+    };
+
+    await joi
+      .validate(params, validator)
+      .catch(fun.catch(req, res, new Errors.BadRequestError()));
+
+    return params;
   }
 }
 
