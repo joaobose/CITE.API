@@ -1,13 +1,13 @@
 const { fork } = require('child_process');
 const config = require('./config/start.config.json');
 
-// ---------------- fork the node service
+//---------------- fork the node service
 let child = fork(`./app`, [config.name, config.port, true], {
   silent: true,
   stdio: 'inherit'
 });
 
-// ---------------- catch error
+//---------------- catch error
 child.on('error', (error) => {
   console.log(`${item.name} process error: ${error.message}`);
 });

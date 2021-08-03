@@ -69,8 +69,8 @@ let expectNotFound = async (route, token) => {
 };
 
 module.exports = {
-  login: login,
-  resetDatabase: resetDatabase,
-  expectEntityMatch: expectEntityMatch,
-  expectNotFound: expectNotFound
+  login,
+  resetDatabase,
+  expectEntityMatch,
+  expectNotFound
 };
