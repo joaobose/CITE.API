@@ -52,8 +52,5 @@
     "joi": "^14.3.1",
     "sequelize-cli": "^6.2.0",
     "supertest": "^4.0.2"
-  },
-  "apidoc": {
-    "name": "cite.gateway.service"
   }
 }
