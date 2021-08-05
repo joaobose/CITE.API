@@ -22,8 +22,8 @@ class UserShowWithValidator extends BaseValidator {
       relationships: req.query.relationships
     };
 
-    await joi
-      .validate(params, validator)
+    await validator
+      .validateAsync(params)
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
     //---------------------- validate params value
@@ -44,8 +44,8 @@ class UserShowWithValidator extends BaseValidator {
       with: params.relationships.split(',')
     };
 
-    await joi
-      .validate(params, validator)
+    await validator
+      .validateAsync(params)
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
     params.relationships = R.map(

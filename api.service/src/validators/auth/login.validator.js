@@ -21,8 +21,8 @@ class LoginValidator extends BaseValidator {
       password: req.fields.password
     };
 
-    await joi
-      .validate(params, validator)
+    await validator
+      .validateAsync(params)
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
     return params;

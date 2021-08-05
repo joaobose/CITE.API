@@ -19,8 +19,8 @@ class UserIndexValidator extends BaseValidator {
       page: req.query.page
     };
 
-    await joi
-      .validate(params, validator)
+    await validator
+      .validateAsync(params)
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
     return params;

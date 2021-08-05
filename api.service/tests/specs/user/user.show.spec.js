@@ -11,23 +11,21 @@ const route = '/users/1';
 
 let token;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   await utils.resetDatabase();
   token = await utils.login(config.email, config.password);
-  done();
 });
 
 describe(`Get ${route}`, () => {
-  it('No token should return 401', async (done) => {
+  it('No token should return 401', async () => {
     //------------------ API call
     const res = await request(microserviceUrl).get(route);
 
     //------------------ Checking response
     expect(res.statusCode).toEqual(401);
-    done();
   });
 
-  it('Get the user should return its data', async (done) => {
+  it('Get the user should return its data', async () => {
     //------------------ API call
     const res = await request(microserviceUrl)
       .get(route)
@@ -39,11 +37,7 @@ describe(`Get ${route}`, () => {
     //------------------ Check attributes
     expect(res.body).toMatchSchema(schema.schema, {});
     expect(res.body.data.id).toBe(1);
-
-    done();
   });
 });
 
-afterAll((done) => {
-  done();
-});
+afterAll(async () => {});

@@ -11,9 +11,8 @@ const route = '/users/1';
 
 let token;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   token = await utils.login(config.email, config.password);
-  done();
 });
 
 describe(`Put ${route}`, () => {
@@ -23,16 +22,15 @@ describe(`Put ${route}`, () => {
     lastname: 'Pinto Diaz'
   };
 
-  it('No token should return 401', async (done) => {
+  it('No token should return 401', async () => {
     //------------------ API call
     const res = await request(microserviceUrl).put(route);
 
     //------------------ Checking response
     expect(res.statusCode).toEqual(401);
-    done();
   });
 
-  it('Updating a direct attribute of the user actually updates the attribute', async (done) => {
+  it('Updating a direct attribute of the user actually updates the attribute', async () => {
     //------------------ Setting variables
     let directAttributes = []; // Example: ['foo', 'bar']
 
@@ -63,41 +61,9 @@ describe(`Put ${route}`, () => {
         );
       })
     );
-
-    // await Promise.all(
-    //   directAttributes.map((parameter) => {
-    //     return (async () => {
-    //       //------------------ Setting variables
-    //       let localBody = {};
-    //       localBody[parameter] = body[parameter];
-
-    //       //------------------ API call
-    //       const update = await request(microserviceUrl)
-    //         .put(route)
-    //         .set('Authorization', `Bearer ${token}`)
-    //         .send(localBody);
-
-    //       //------------------ Checking response
-    //       expect(update.statusCode).toEqual(200);
-
-    //       //------------------ GET call
-    //       const res = await request(microserviceUrl)
-    //         .get(route)
-    //         .set('Authorization', `Bearer ${token}`);
-
-    //       //------------------ Checking changes
-    //       expect(res.statusCode).toEqual(200);
-    //       expect(res.body.data.attributes[parameter]).toEqual(
-    //         localBody[parameter]
-    //       );
-    //     })();
-    //   })
-    // );
-
-    done();
   });
 
-  it('Updating all parameters of the user returns 200', async (done) => {
+  it('Updating all parameters of the user returns 200', async () => {
     //------------------ Setting variables
     let { ...localBody } = body;
 
@@ -120,11 +86,9 @@ describe(`Put ${route}`, () => {
       schema.schema,
       token
     );
-
-    done();
   });
 
-  it('Update some parameters of the user returns 200', async (done) => {
+  it('Update some parameters of the user returns 200', async () => {
     //------------------ Setting variables
     let parameters = Object.keys(body);
 
@@ -155,41 +119,7 @@ describe(`Put ${route}`, () => {
         );
       })
     );
-
-    // await Promise.all(
-    //   parameters.map((parameter) => {
-    //     return (async () => {
-    //       //------------------ Setting variables
-    //       let { ...localBody } = body;
-    //       delete localBody[parameter];
-
-    //       //------------------ API call
-    //       const res = await request(microserviceUrl)
-    //         .put(route)
-    //         .set('Authorization', `Bearer ${token}`)
-    //         .send(localBody);
-
-    //       //------------------ Checking response
-    //       expect(res.statusCode).toEqual(200);
-
-    //       //------------------ Checking if it was updated
-    //       let modelId = res.body.data.id;
-
-    //       await utils.expectEntityMatch(
-    //         `${route}`,
-    //         modelId,
-    //         localBody,
-    //         schema.schema,
-    //         token
-    //       );
-    //     })();
-    //   })
-    // );
-
-    done();
   });
 });
 
-afterAll((done) => {
-  done();
-});
+afterAll(async () => {});

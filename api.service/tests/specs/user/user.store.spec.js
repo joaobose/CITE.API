@@ -11,9 +11,8 @@ const route = '/users/';
 
 let token;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   token = await utils.login(config.email, config.password);
-  done();
 });
 
 describe(`Post ${route}`, () => {
@@ -26,16 +25,15 @@ describe(`Post ${route}`, () => {
     roleId: 2
   };
 
-  it('No token should return 401', async (done) => {
+  it('No token should return 401', async () => {
     //------------------ API call
     const res = await request(microserviceUrl).post(route);
 
     //------------------ Checking response
     expect(res.statusCode).toEqual(401);
-    done();
   });
 
-  it('Missing a parameter returns 400', async (done) => {
+  it('Missing a parameter returns 400', async () => {
     //------------------ Setting variables
     let parameters = Object.keys(body);
 
@@ -55,30 +53,9 @@ describe(`Post ${route}`, () => {
         expect(res.statusCode).toEqual(400);
       })
     );
-
-    // await Promise.all(
-    //   parameters.map((parameter) => {
-    //     return (async () => {
-    //       //------------------ Setting variables
-    //       let { ...localBody } = body;
-    //       delete localBody[parameter];
-
-    //       //------------------ API call
-    //       const res = await request(microserviceUrl)
-    //         .post(route)
-    //         .set('Authorization', `Bearer ${token}`)
-    //         .send(localBody);
-
-    //       //------------------ Checking response
-    //       expect(res.statusCode).toEqual(400);
-    //     })();
-    //   })
-    // );
-
-    done();
   });
 
-  it('Create the user should return 201 and store the resource', async (done) => {
+  it('Create the user should return 201 and store the resource', async () => {
     //------------------ Setting variables
     let { ...localBody } = body;
 
@@ -103,11 +80,7 @@ describe(`Post ${route}`, () => {
       schema.schema,
       token
     );
-
-    done();
   });
 });
 
-afterAll((done) => {
-  done();
-});
+afterAll(async () => {});

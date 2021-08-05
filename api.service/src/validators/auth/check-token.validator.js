@@ -19,8 +19,8 @@ class CheckTokenValidator extends BaseValidator {
       token: req.params.token
     };
 
-    await joi
-      .validate(params, validator)
+    await validator
+      .validateAsync(params)
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
     return params;

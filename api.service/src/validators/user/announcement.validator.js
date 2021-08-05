@@ -23,8 +23,8 @@ class AnnouncementValidator extends BaseValidator {
       message: req.fields.message
     };
 
-    await joi
-      .validate(params, validator)
+    await validator
+      .validateAsync(params)
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
     if (!this.broadcaster.searchChannel(params.channel)) {

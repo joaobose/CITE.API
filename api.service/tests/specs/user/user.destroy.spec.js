@@ -7,22 +7,20 @@ const route = '/users/2';
 
 let token;
 
-beforeAll(async (done) => {
+beforeAll(async () => {
   token = await utils.login(config.email, config.password);
-  done();
 });
 
 describe(`Delete ${route}`, () => {
-  it('No token should return 401', async (done) => {
+  it('No token should return 401', async () => {
     //------------------ API call
     const res = await request(microserviceUrl).delete(route);
 
     //------------------ Checking response
     expect(res.statusCode).toEqual(401);
-    done();
   });
 
-  it('Deleting the user should return 200', async (done) => {
+  it('Deleting the user should return 200', async () => {
     //------------------ API call
     const res = await request(microserviceUrl)
       .delete(route)
@@ -35,11 +33,7 @@ describe(`Delete ${route}`, () => {
 
     //------------------ Checking if deleted
     await utils.expectNotFound(route, token);
-
-    done();
   });
 });
 
-afterAll((done) => {
-  done();
-});
+afterAll(async () => {});

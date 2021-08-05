@@ -29,8 +29,8 @@ class UserStoreValidator extends BaseValidator {
       roleId: req.fields.roleId
     };
 
-    await joi
-      .validate(params, validator)
+    await validator
+      .validateAsync(params)
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
     return params;

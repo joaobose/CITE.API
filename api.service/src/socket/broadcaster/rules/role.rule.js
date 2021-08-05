@@ -19,7 +19,7 @@ class RoleRule extends BaseRule {
     const body = {
       authorization: data.authorization
     };
-    await joi.validate(body, validator);
+    await validator.validateAsync(body);
 
     return body;
   }

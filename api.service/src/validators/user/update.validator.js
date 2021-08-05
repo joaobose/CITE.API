@@ -22,8 +22,8 @@ class UserUpdateValidator extends BaseValidator {
     const params = R.pick(['name', 'lastname', 'description'], req.fields);
     params.id = req.params.id;
 
-    await joi
-      .validate(params, validator)
+    await validator
+      .validateAsync(params)
       .catch(fun.catch(req, res, new Errors.BadRequestError()));
 
     return params;
