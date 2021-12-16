@@ -35,7 +35,7 @@
   "homepage": "https://github.com/joaobose/CITE.API#readme",
   "dependencies": {
     "auto-bind": "^4.0.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "cron": "^1.8.2",
@@ -43,7 +43,7 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
-    "fun.framework": "^0.4.3",
+    "fun.framework": "file:../../fun.framework",
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",

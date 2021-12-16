@@ -11,13 +11,13 @@ class ApplicationScheduler extends Scheduler {
       fun.schedule(BroadcastSchedule, 'broadcast', {
         timeout: 500,
         interval: 15000
-      }),
-      fun.schedule(MinuteSchedule, 'minuteCron', {
-        cron: '*/1 * * * *'
-      }),
-      fun.schedule(SecondsSchedule, 'secondsCron', {
-        cron: '30 * * * * *'
       })
+      // fun.schedule(MinuteSchedule, 'minuteCron', {
+      //   cron: '*/1 * * * *'
+      // }),
+      // fun.schedule(SecondsSchedule, 'secondsCron', {
+      //   cron: '30 * * * * *'
+      // })
     ];
   }
 }

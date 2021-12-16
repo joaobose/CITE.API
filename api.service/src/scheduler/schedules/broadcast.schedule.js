@@ -11,12 +11,28 @@ class BroadcastSchedule extends BaseSchedule {
 
   async intervalCallback() {
     let broadcaster = new Broadcaster();
-    broadcaster.broadcast('public', 'reminder', {
-      message: 'Windows sucks as OS!'
+    broadcaster.broadcast('users', 'reminder', {
+      message: 'Windows sucks as OS! This is a brodcast to all users'
     });
     broadcaster.broadcast('board', 'reminder', {
       message: 'Using Windows is a bad example to our applicants!'
     });
+    broadcaster.broadcast(
+      'users',
+      'reminder',
+      {
+        message: 'You are Ricardo'
+      },
+      '2'
+    );
+    broadcaster.broadcast(
+      'users',
+      'reminder',
+      {
+        message: 'You are Joao'
+      },
+      '1'
+    );
   }
 }
 
