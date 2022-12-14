@@ -39,7 +39,7 @@
     "cron": "^1.8.2",
     "cron-validator": "^1.1.1",
     "ejs": "^3.1.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-formidable": "^1.2.0",
     "fun.framework": "^0.4.0",
     "joi": "^14.3.1",
