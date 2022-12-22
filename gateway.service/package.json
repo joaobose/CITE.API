@@ -39,7 +39,7 @@
     "fun.framework": "^0.4.0",
     "http-proxy": "^1.18.1",
     "joi": "^14.3.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mysql2": "^2.1.0",
     "ramda": "^0.27.0",
     "sequelize": "^6.3.4",
